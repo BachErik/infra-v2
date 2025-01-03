@@ -28,3 +28,16 @@ spec:
         name: prometheus-community
         namespace: kube-prometheus-stack
       interval: 12h
+  values:
+    grafana:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: traefik
+        hosts:
+          - grafana.bacherik.de
+        tls:
+          - secretName: grafana-tls
+            hosts:
+              - grafana.bacherik.de
