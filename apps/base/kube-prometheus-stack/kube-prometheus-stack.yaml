@@ -26,7 +26,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-        namespace: flux-system
+        namespace: kube-prometheus-stack
       interval: 12h
   values:
     crds:
