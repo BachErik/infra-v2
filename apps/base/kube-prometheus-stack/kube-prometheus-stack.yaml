@@ -31,3 +31,43 @@ spec:
   values:
     crds:
       enabled: true
+    grafana:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: traefik
+        hosts:
+          - grafana.bacherik.de
+        tls:
+          - secretName: grafana-tls
+            hosts:
+              - grafana.bacherik.de
+    prometheusOperator:
+      enabled: true
+      admissionWebhooks:
+        enabled: false
+    alertmanager:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: traefik
+        hosts:
+          - alertmanager.bacherik.de
+        tls:
+          - secretName: alertmanager-tls
+            hosts:
+              - alertmanager.bacherik.de
+    prometheus:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: traefik
+        hosts:
+          - prometheus.bacherik.de
+        tls:
+          - secretName: prometheus-tls
+            hosts:
+              - prometheus.bacherik.de
