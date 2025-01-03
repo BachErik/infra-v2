@@ -31,5 +31,5 @@ spec:
   values:
     metrics:
       prometheus:
-        service:
-          enabled: true
+        enabled: true
+        entryPoint: metrics
