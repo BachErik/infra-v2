@@ -22,7 +22,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: "67.7.0"
+      version: "68.0.1"
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
@@ -41,3 +41,31 @@ spec:
           - secretName: grafana-tls
             hosts:
               - grafana.bacherik.de
+    prometheusOperator:
+      enabled: true
+      admissionWebhooks:
+        enabled: false
+    alertmanager:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: traefik
+        hosts:
+          - alertmanager.bacherik.de
+        tls:
+          - secretName: alertmanager-tls
+            hosts:
+              - alertmanager.bacherik.de
+    prometheus:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        ingressClassName: traefik
+        hosts:
+          - prometheus.bacherik.de
+        tls:
+          - secretName: prometheus-tls
+            hosts:
+              - prometheus.bacherik.de
