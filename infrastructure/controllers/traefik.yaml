@@ -29,7 +29,14 @@ spec:
         namespace: traefik
       interval: 12h
   values:
+    entryPoints:
+      metrics:
+        address: :8082
     metrics:
       prometheus:
         service:
           enabled: true
+          entryPoint: metrics
+          addEntryPointsLabels: true
+          addRoutersLabels: true
+          addServicesLabels: true
