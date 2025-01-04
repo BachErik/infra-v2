@@ -17,6 +17,8 @@ kind: HelmRelease
 metadata:
   name: traefik
   namespace: traefik
+  labels:
+    patch: patch-values
 spec:
   interval: 30m
   chart:

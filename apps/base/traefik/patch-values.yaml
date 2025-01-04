@@ -3,6 +3,8 @@ kind: HelmRelease
 metadata:
   name: traefik
   namespace: traefik
+  labels:
+    patch: patch-values
 spec:
   values:
     metrics:
