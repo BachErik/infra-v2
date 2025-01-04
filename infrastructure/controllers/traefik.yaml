@@ -41,3 +41,5 @@ spec:
             - 0.3
             - 1.2
             - 5.0
+          serviceMonitor:
+            enabled: true
