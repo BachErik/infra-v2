@@ -32,7 +32,7 @@ spec:
     metrics:
       prometheus:
         service:
-          enabled: false
+          enabled: true
           addEntryPointsLabels: true
           addRoutersLabels: true
           addServicesLabels: true
