@@ -43,3 +43,4 @@ spec:
             - 5.0
           serviceMonitor:
             enabled: true
+            namespace: traefik
