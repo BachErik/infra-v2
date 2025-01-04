@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: traefik
 
 resources:
-  - ../../infrastructure/controllers/traefik.yaml
+  - ../../../infrastructure/controllers/traefik.yaml
 
 patchesStrategicMerge:
   - patch-values.yaml
