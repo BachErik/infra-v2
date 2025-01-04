@@ -28,3 +28,8 @@ spec:
         name: traefik
         namespace: traefik
       interval: 12h
+  values:
+    metrics:
+      prometheus:
+        service:
+          enabled: true
