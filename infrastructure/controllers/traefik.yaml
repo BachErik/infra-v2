@@ -30,7 +30,24 @@ spec:
       interval: 12h
   values:
     deployment:
-      kind: DaemonSet
+      replicas: null
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "50Mi"
+      limits:
+        cpu: "300m"
+        memory: "150Mi"
+    autoscaling:
+      enabled: true
+      maxReplicas: 10
+      metrics:
+      - type: Resource
+        resource:
+          name: cpu
+          target:
+            type: Utilization
+            averageUtilization: 80
     metrics:
       prometheus:
         service:
