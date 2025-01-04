@@ -29,6 +29,8 @@ spec:
         namespace: traefik
       interval: 12h
   values:
+    deployment:
+      kind: DaemonSet
     metrics:
       prometheus:
         service:
