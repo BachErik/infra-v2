@@ -48,20 +48,3 @@ spec:
           target:
             type: Utilization
             averageUtilization: 80
-    metrics:
-      prometheus:
-        service:
-          enabled: true
-          addEntryPointsLabels: true
-          addRoutersLabels: true
-          addServicesLabels: true
-          buckets:
-            - 0.1
-            - 0.3
-            - 1.2
-            - 5.0
-        serviceMonitor:
-          enabled: true
-          namespace: kube-prometheus-stack
-          additionalLabels:
-            release: kube-prometheus-stack
