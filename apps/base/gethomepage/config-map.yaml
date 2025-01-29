@@ -104,6 +104,11 @@ data:
               href: https://mastodon.social/@BachErik
               icon: mastodon.svg
               description: In case Twitter dies.
+        - Bluesky:
+            - abbr: BS
+              href: https://bsky.app/profile/bacherik.de
+              icon: bluesky.svg
+              description: In case Mastodon dies.
         - E-Mail:
             - abbr: E
               href: mailto:info@bacherik.de
