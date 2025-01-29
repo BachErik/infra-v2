@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: open-webui
+  namespace: open-webui
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+    ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+spec:
+  ingressClassName: traefik
+  tls:
+  - hosts:
+    - chat.bacherik.de
+    secretName: open-webui-tls
+  rules:
+  - host: "chat.bacherik.de"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: open-webui
+            port:
+              number: 80
