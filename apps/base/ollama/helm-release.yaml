@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: open-webui
+  namespace: open-webui
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: open-webui
+      version: "5.4.0"
+      sourceRef:
+        kind: HelmRepository
+        name: open-webui
+        namespace: open-webui
+  values:
+    ollama.models:
+      pull:
+        - llama2
+        - mistral
+        - deepseek-r1
+      run:
+        - llama2
+        - deepseek-r1
+    persistentVolume:
+      # -- Enable persistence using PVC
+      enabled: true
