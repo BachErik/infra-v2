@@ -13,9 +13,3 @@ spec:
         kind: HelmRepository
         name: open-webui
         namespace: open-webui
-  values:
-    ollama:
-      enabled: false
-    extraEnvVars:
-      - name: "OLLAMA_API_BASE_URL"
-        value: "http://ollama.ollama.svc.cluster.local:11434"
