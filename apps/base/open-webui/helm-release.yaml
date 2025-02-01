@@ -13,3 +13,8 @@ spec:
         kind: HelmRepository
         name: open-webui
         namespace: open-webui
+  values:
+    ollama.models:
+        - llama2
+        - mistral
+        - deepseek-r1
