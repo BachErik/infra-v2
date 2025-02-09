@@ -38,3 +38,7 @@ spec:
       target:
         kind: ClusterIssuer
         name: letsencrypt
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
