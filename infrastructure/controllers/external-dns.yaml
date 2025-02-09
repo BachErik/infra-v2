@@ -27,6 +27,7 @@ spec:
     policy: sync
     domainFilters:
     - lyre.works
+    - bacherik.de
     provider:
       name: cloudflare
     env:

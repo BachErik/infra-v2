@@ -12,6 +12,9 @@ metadata:
     gethomepage.dev/icon: homepage.png
     gethomepage.dev/name: Homepage
     cert-manager.io/cluster-issuer: "letsencrypt"
+    external-dns.alpha.kubernetes.io/hostname: 
+    - bacherik.de
+    - www.bacherik.de
 spec:
   ingressClassName: traefik
   tls:

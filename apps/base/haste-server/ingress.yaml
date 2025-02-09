@@ -6,6 +6,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
     gethomepage.dev/description: Hastebin/Pastebin fork
+    external-dns.alpha.kubernetes.io/hostname: haste.bacherik.de
 spec:
   ingressClassName: traefik
   tls:
