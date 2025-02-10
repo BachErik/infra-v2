@@ -20,3 +20,6 @@ spec:
           image: bacherik/filedownload:v1.0.0
           ports:
             - containerPort: 80
+          securityContext:
+            capabilities:
+              drop: ["ALL"]
