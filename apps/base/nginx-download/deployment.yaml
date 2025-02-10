@@ -23,4 +23,4 @@ spec:
           securityContext:
             capabilities:
               drop: ["ALL"]
-              add: ["CHOWN", "SETGID"]
+              add: ["CHOWN", "SETGID", "SETUID"]
