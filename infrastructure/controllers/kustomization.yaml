@@ -4,7 +4,7 @@ resources:
   - metrics-server.yaml
   - local-storage.yaml
   - traefik.yaml
- # - error-pages.yaml
+  - error-pages.yaml
   - cf-secret.yaml
   - external-dns.yaml
   - cert-manager.yaml
