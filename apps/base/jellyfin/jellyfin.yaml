@@ -38,8 +38,8 @@ spec:
         - host: jellyfin.bacherik.de
           paths:
             - path: /
-              pathType: ImplementationSpecific
+              pathType: Prefix
       tls:
         - hosts:
-          - file.bacherik.de
+          - jellyfin.bacherik.de
           secretName: jellyfin-tls
