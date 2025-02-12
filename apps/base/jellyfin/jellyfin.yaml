@@ -1,0 +1,45 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: jellyfin
+  namespace: flux-system
+spec:
+  url: https://jellyfin.github.io/jellyfin-helm
+  interval: 24h
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jellyfin
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jellyfin
+  namespace: flux-system
+spec:
+  releaseName: jellyfin
+  targetNamespace: jellyfin
+  interval: 30m
+  chart:
+    spec:
+      sourceRef:
+        kind: HelmRepository
+        name: jellyfin
+      chart: jellyfin
+      version: 2.1.0
+      interval: 24h
+  values:
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+      hosts:
+        - host: jellyfin.bacherik.de
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+          - file.bacherik.de
+          secretName: jellyfin-tls
