@@ -12,3 +12,4 @@ resources:
   - ../base/weave-gitops
   - ../base/kube-prometheus-stack
 #  - ../base/open-webui
+  - ../base/weblate
