@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: killedby
 resources:
   - namespace.yaml
+  - killedby-token.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
