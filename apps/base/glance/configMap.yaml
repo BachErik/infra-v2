@@ -30,6 +30,8 @@ data:
                   - url: https://programming.dev/feeds/c/programmer_humor.xml?sort=New
                     title: Programming.Dev
                   - url: https://lemmy.ml/feeds/c/programmerhumor.xml?sort=New
+                  - url: https://getsession.org/feed
+                    title: Session Messenger Blog
               - type: twitch-channels
                 channels:
                   - BachErik_live
