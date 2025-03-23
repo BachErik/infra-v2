@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: glance
 resources:
   - namespace.yaml
+  - configMap.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
-  - configMap.yaml
