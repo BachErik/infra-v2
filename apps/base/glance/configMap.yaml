@@ -179,7 +179,7 @@ data:
                   - gitlab:fdroid/fdroidclient
                   - dockerhub:gotify/server
               - type: repository
-                repository: BachErik/killedtestby
+                repository: BachErik/killedby
                 pull-requests-limit: 5
                 issues-limit: 3
                 commits-limit: 3
