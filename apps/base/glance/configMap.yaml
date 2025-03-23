@@ -178,6 +178,11 @@ data:
                   - codeberg:redict/redict
                   - gitlab:fdroid/fdroidclient
                   - dockerhub:gotify/server
+              - type: repository
+                repository: BachErik/killedby
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
               - type: markets
                 markets:
                   - symbol: INTC
