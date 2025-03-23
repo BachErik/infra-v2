@@ -155,11 +155,6 @@ data:
                   - UCBa659QWEk1AI4Tg--mrJ2A # Tom Scott
                   - UCltUSXcpOqq0SS_y9QCUO3Q # Tumppi066
                   - UC8VhAX-voAUegprM4SpHQJQ # Wacky Science
-              - type: repository
-                repository: BachErik/killedby
-                pull-requests-limit: 5
-                issues-limit: 3
-                commits-limit: 3
                 
           - size: small
             widgets:
@@ -183,6 +178,11 @@ data:
                   - codeberg:redict/redict
                   - gitlab:fdroid/fdroidclient
                   - dockerhub:gotify/server
+              - type: repository
+                repository: BachErik/killedby
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
               - type: markets
                 markets:
                   - symbol: INTC
@@ -203,3 +203,56 @@ data:
                     name: AMD
                   - symbol: RDDT
                     name: Reddit
+      - name: Test
+        columns:
+          - size: small
+            widgets: 
+              - type: repository
+                repository: BachErik/killedby
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
+              - type: repository
+                repository: BachErik/Bla
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
+              - type: repository
+                repository: glanceapp/glance
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
+          - size: full
+            widgets: 
+              - type: repository
+                repository: BachErik/killedby
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
+              - type: repository
+                repository: BachErik/Bla
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
+              - type: repository
+                repository: glanceapp/glance
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
+          - size: small
+            widgets:
+              - type: repository
+                repository: BachErik/killedby
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
+              - type: repository
+                repository: BachErik/Bla
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
+              - type: repository
+                repository: glanceapp/glance
+                pull-requests-limit: 5
+                issues-limit: 3
+                commits-limit: 3
