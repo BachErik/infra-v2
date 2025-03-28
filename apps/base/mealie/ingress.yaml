@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: maelie
+  namespace: maelie
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+spec:
+  ingressClassName: traefik
+  tls:
+    - secretName: maelie-tls
+      hosts:
+        - maelie.bacherik.de
+  rules:
+    - host: "maelie.bacherik.de"
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: maelie
+                port:
+                  number: 9000
