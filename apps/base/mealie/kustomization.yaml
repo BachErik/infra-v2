@@ -9,6 +9,4 @@ resources:
   - service-postgres.yaml
   - deployment-mealie.yaml
   - service-mealie.yaml
-  
-  - service.yaml
   - ingress.yaml
