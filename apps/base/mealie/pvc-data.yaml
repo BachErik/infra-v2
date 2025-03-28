@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mealie-data
-  namespace: maelie
+  namespace: mealie
 spec:
   accessModes:
     - ReadWriteOnce
