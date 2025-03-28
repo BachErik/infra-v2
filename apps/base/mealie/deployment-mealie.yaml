@@ -44,6 +44,31 @@ spec:
           value: "5432"
         - name: POSTGRES_DB
           value: "mealie"
+        - name: SMTP_HOST
+          valueFrom:
+            secretKeyRef:
+              name: mealie-secrets
+              key: SMTP_HOST
+        - name: SMTP_PORT
+          valueFrom:
+            secretKeyRef:
+              name: mealie-secrets
+              key: SMTP_PORT
+        - name: SMTP_FROM_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: mealie-secrets
+              key: SMTP_FROM_EMAIL
+        - name: SMTP_USER
+          valueFrom:
+            secretKeyRef:
+              name: mealie-secrets
+              key: SMTP_USER
+        - name: SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mealie-secrets
+              key: SMTP_PASSWORD
         ports:
         - containerPort: 9000
         resources:

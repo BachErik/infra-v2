@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   - pvc-data.yaml
   - pvc-pgdata.yaml
+  - mealie-secrets.yaml
   - deployment-postgres.yaml
   - service-postgres.yaml
   - deployment-mealie.yaml
