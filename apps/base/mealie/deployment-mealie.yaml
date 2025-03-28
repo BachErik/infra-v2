@@ -29,9 +29,9 @@ spec:
         - name: PGID
           value: "1000"
         - name: TZ
-          value: "America/Anchorage"
+          value: "Europa/Berlin"
         - name: BASE_URL
-          value: "https://mealie.yourdomain.com"
+          value: "https://mealie.bacherik.de"
         - name: DB_ENGINE
           value: "postgres"
         - name: POSTGRES_USER
