@@ -13,4 +13,3 @@ resources:
   - ../base/kube-prometheus-stack
 #  - ../base/open-webui
 #  - ../base/weblate
-  - ../base/mealie
