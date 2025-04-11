@@ -6,6 +6,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
     gethomepage.dev/description: Hastebin/Pastebin fork
+    traefik.ingress.kubernetes.io/router.middlewares: error-pages-error-pages@kubernetescrd
 spec:
   ingressClassName: traefik
   tls:

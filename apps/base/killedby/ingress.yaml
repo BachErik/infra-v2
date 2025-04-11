@@ -5,7 +5,7 @@ metadata:
   namespace: killedby
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
-    ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16"
+    traefik.ingress.kubernetes.io/router.middlewares: error-pages-error-pages@kubernetescrd
 spec:
   ingressClassName: traefik
   tls:
