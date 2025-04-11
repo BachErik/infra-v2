@@ -31,7 +31,7 @@ spec:
   selector:
     app: error-pages
   ports:
-  - protocol: TCP
+  - protocol: http
     port: 80
     targetPort: 80
 ---
