@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: error-pages
-        image: ghcr.io/bacherik/error-pages:latest
+        image: ghcr.io/bacherik/error-pages:pr-5
         ports:
         - containerPort: 80
 ---
