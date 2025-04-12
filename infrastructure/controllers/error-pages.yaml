@@ -23,6 +23,7 @@ spec:
         image: ghcr.io/bacherik/error-pages:pr-5
         ports:
         - containerPort: 80
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
