@@ -25,3 +25,79 @@ spec:
             - gatus.bacherik.de
       hosts:
         - gatus.bacherik.de
+    config:
+      storage:
+        type: postgres
+        path: "postgres://user:password@postges.gatus.svc.cluster.local:5432/gatus?sslmode=disable"
+        caching: true
+
+      connectivity:
+        checker:
+          target: 1.1.1.1
+          interval: 60s
+
+      endpoints:
+        # Server-Pings via ICMP
+        - name: main
+          group: "server"
+          url: "icmp://85.215.129.175"
+          interval: 60s
+          conditions:
+            - "[CONNECTED] == true"
+
+        - name: sync
+          group: "server"
+          url: "icmp://85.215.61.227"
+          interval: 60s
+          conditions:
+            - "[CONNECTED] == true"
+
+        - name: fetch
+          group: "server"
+          url: "icmp://85.215.137.43"
+          interval: 60s
+          conditions:
+            - "[CONNECTED] == true"
+
+        # HTTP/S-Überprüfungen
+        - name: file.bacherik.de
+          group: "services"
+          url: "https://file.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: bacherik.de
+          group: "services"
+          url: "https://bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: haste.bacherik.de
+          group: "services"
+          url: "https://haste.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: docs.bacherik.de
+          group: "services"
+          url: "https://docs.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: killedby.bacherik.de
+          group: "services"
+          url: "https://killedby.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: dashboard.bacherik.de
+          group: "services"
+          url: "https://dashboard.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
