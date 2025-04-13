@@ -11,5 +11,6 @@ resources:
 #  - ../base/k8s-dashboard
   - ../base/weave-gitops
   - ../base/kube-prometheus-stack
+  - ../base/gatus
 #  - ../base/open-webui
 #  - ../base/weblate
