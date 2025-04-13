@@ -28,7 +28,7 @@ spec:
     config:
       storage:
         type: postgres
-        path: "postgres://user:password@postges.gatus.svc.cluster.local:5432/gatus?sslmode=disable"
+        path: "postgres://user:password@postgres-service.gatus.svc.cluster.local:5432/gatus?sslmode=disable"
         caching: true
 
       connectivity:
