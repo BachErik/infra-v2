@@ -20,14 +20,10 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
       tls:
-        - secretName: gatus-tls
-          hosts:
-            - gatus.bacherik.de
         - secretName: status-tls
           hosts:
             - status.bacherik.de
       hosts:
-        - gatus.bacherik.de
         - status.bacherik.de
     config:
       ui:
