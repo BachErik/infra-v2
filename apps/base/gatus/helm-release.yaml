@@ -23,9 +23,19 @@ spec:
         - secretName: gatus-tls
           hosts:
             - gatus.bacherik.de
+        - secretName: status-tls
+          hosts:
+            - status.bacherik.de
       hosts:
         - gatus.bacherik.de
+        - status.bacherik.de
     config:
+      ui:
+        title: "BachErik's status"
+        description: "BachErik's stautspage. It show all services related to BachErik and there status."
+        header: "BachErik's status"
+        logo: https://avatars.githubusercontent.com/u/75324423?v=4
+        link: https://status.bacherik.de
       storage:
         type: postgres
         path: "postgres://user:password@postgres-service.gatus.svc.cluster.local:5432/gatus?sslmode=disable"
