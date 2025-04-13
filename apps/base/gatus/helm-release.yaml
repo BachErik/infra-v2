@@ -37,6 +37,49 @@ spec:
           interval: 60s
 
       endpoints:
+        # HTTP/S-Überprüfungen
+        - name: Homepage
+          group: "services"
+          url: "https://bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: Download Server
+          group: "services"
+          url: "https://file.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: Hastebin
+          group: "services"
+          url: "https://haste.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: Docs
+          group: "services"
+          url: "https://docs.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: Killedby
+          group: "services"
+          url: "https://killedby.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
+        - name: Dashboard
+          group: "services"
+          url: "https://dashboard.bacherik.de"
+          interval: 1m
+          conditions:
+            - "[STATUS] == 200"
+
         # Server-Pings via ICMP
         - name: main
           group: "server"
@@ -58,46 +101,3 @@ spec:
           interval: 60s
           conditions:
             - "[CONNECTED] == true"
-
-        # HTTP/S-Überprüfungen
-        - name: file.bacherik.de
-          group: "services"
-          url: "https://file.bacherik.de"
-          interval: 1m
-          conditions:
-            - "[STATUS] == 200"
-
-        - name: bacherik.de
-          group: "services"
-          url: "https://bacherik.de"
-          interval: 1m
-          conditions:
-            - "[STATUS] == 200"
-
-        - name: haste.bacherik.de
-          group: "services"
-          url: "https://haste.bacherik.de"
-          interval: 1m
-          conditions:
-            - "[STATUS] == 200"
-
-        - name: docs.bacherik.de
-          group: "services"
-          url: "https://docs.bacherik.de"
-          interval: 1m
-          conditions:
-            - "[STATUS] == 200"
-
-        - name: killedby.bacherik.de
-          group: "services"
-          url: "https://killedby.bacherik.de"
-          interval: 1m
-          conditions:
-            - "[STATUS] == 200"
-
-        - name: dashboard.bacherik.de
-          group: "services"
-          url: "https://dashboard.bacherik.de"
-          interval: 1m
-          conditions:
-            - "[STATUS] == 200"
