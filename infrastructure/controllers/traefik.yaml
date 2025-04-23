@@ -29,6 +29,9 @@ spec:
         namespace: traefik
       interval: 12h
   values:
+    ports:
+      minecraft:
+        port: 25565
     deployment:
       replicas: null
     resources:
