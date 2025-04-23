@@ -32,6 +32,10 @@ spec:
     ports:
       minecraft:
         port: 25565
+      web:
+        port: 80
+      websecure:
+        port: 443
     deployment:
       replicas: null
     resources:
