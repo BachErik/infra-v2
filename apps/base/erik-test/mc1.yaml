@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mc1
+  namespace: eriktest
+  labels:
+    app: mc1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mc1
+  template:
+    metadata:
+      labels:
+        app: mc1
+    spec:
+      containers:
+        - name: mc1
+          image: itzg/minecraft-server:latest
+          ports:
+            - containerPort: 25565
+          env:
+            - name: EULA
+              value: "TRUE"
+          volumeMounts:
+            - name: mc1
+              mountPath: /data
+      volumes:
+        - name: mc1
+          persistentVolumeClaim:
+            claimName: mc1
