@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mc3
+  namespace: eriktest
+  annotations:
+    mc-router.itzg.me/externalServerName: "test.bacherik.de"
+    external-dns.alpha.kubernetes.io/hostname: "test.bacherik.de"
+spec:
+  selector:
+    app: mc3
+  ports:
+    - port: 25565
+      targetPort: 25565
+      protocol: TCP
