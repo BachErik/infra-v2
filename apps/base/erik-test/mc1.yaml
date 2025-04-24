@@ -17,19 +17,11 @@ spec:
     spec:
       containers:
         - name: mc1
-          image: itzg/minecraft-server:latest
+          image: itzg/minecraft-server
           ports:
             - containerPort: 25565
           env:
             - name: EULA
-              value: "TRUE"
-            - name: VERSION
-              value: "1.8"
-            - name: ONLINE_MODE
-              value: "FALSE"
-            - name: TYPE
-              value: "SPIGOT"
-            - name: BUILD_FROM_SOURCE
               value: "TRUE"
           volumeMounts:
             - name: mc1
