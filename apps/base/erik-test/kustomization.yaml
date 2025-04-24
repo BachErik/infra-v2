@@ -10,5 +10,5 @@ resources:
   - mc2.yaml
   - mc1-svc.yaml
   - mc2-svc.yaml
-  #- mc1-ingress.yaml
+  - mc-router-ingress.yaml
   #- mc2-ingress.yaml
