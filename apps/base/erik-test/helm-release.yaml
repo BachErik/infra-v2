@@ -13,3 +13,10 @@ spec:
         kind: HelmRepository
         name: minecraft-server-charts
         namespace: eriktest
+  values:
+    services:
+      minecraft:
+        externalIPs:
+          - 85.215.61.227
+          - 85.215.137.43
+          - 85.215.129.175
