@@ -4,7 +4,8 @@ metadata:
   name: mc2
   namespace: eriktest
   annotations:
-    mc-router.itzg.me/externalServerName: "1-8.bacherik.de"
+    mc-router.itzg.me/externalServerName: "1.8.bacherik.de"
+    external-dns.alpha.kubernetes.io/hostname: "1.8.bacherik.de"
 spec:
   selector:
     app: mc2

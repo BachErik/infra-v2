@@ -36,10 +36,6 @@ spec:
           default: true
         exposedPort: 25565
         protocol: TCP
-      #web:
-      #  port: 80
-      #websecure:
-      #  port: 443
     deployment:
       replicas: null
     resources:
