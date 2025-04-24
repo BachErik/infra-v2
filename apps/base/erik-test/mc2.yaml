@@ -23,6 +23,14 @@ spec:
           env:
             - name: EULA
               value: "TRUE"
+            - name: VERSION
+              value: "1.10"
+            - name: ONLINE_MODE
+              value: "FALSE"
+            - name: TYPE
+              value: "SPIGOT"
+            - name: BUILD_FROM_SOURCE
+              value: "TRUE"
           volumeMounts:
             - name: mc2
               mountPath: /data
