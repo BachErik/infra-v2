@@ -10,4 +10,4 @@ resources:
   - mc2.yaml
   - mc1-svc.yaml
   - mc2-svc.yaml
-  - bla.yaml
+  - ingress.yaml

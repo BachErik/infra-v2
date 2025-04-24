@@ -4,7 +4,7 @@ metadata:
   name: mc1
   namespace: eriktest
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: "mc1.bacherik.de"
+    external-dns.alpha.kubernetes.io/hostname: "1-10.bacherik.de"
   labels:
     app: mc1
 spec:
