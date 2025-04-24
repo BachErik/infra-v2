@@ -24,7 +24,7 @@ spec:
             - name: EULA
               value: "TRUE"
             - name: ONLINE_MODE
-              value: "TRUE"
+              value: "FALSE"
             - name: TYPE
               value: "CUSTOM"
             - name: CUSTOM_SERVER

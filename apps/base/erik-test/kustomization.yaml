@@ -2,8 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  - helm-repo.yaml
-  - helm-release.yaml
+  - mc-router.yaml
+  #- helm-repo.yaml
+  #- helm-release.yaml
   - mc1-pvc.yaml
   - mc2-pvc.yaml
   - mc1.yaml
