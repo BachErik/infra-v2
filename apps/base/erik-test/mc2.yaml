@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: mc2
   namespace: eriktest
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: "mc2.bacherik.de"
   labels:
     app: mc2
 spec:
@@ -22,6 +24,18 @@ spec:
             - containerPort: 25565
           env:
             - name: EULA
+              value: "TRUE"
+            - name: ONLINE_MODE
+              value: "FALSE"
+            - name: TYPE
+              value: "CUSTOM"
+            - name: CUSTOM_SERVER
+              value: "https://cdn.discordapp.com/attachments/886554739708395521/1364951249015013406/spigot-1.10.2.jar?ex=680b8969&is=680a37e9&hm=ac0612d3f1cd53b8ad9ae0f024536d9c6d80831a8699b45fdf9d877ad6db64ce&"
+            - name: FORCE_GAMEMODE
+              value: "TRUE"
+            - name: MODE
+              value: "CREATIVE"
+            - name: ENABLE_COMMAND_BLOCK
               value: "TRUE"
           volumeMounts:
             - name: mc2
