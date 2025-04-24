@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mc-router
+  namespace: eriktest
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -19,7 +20,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: mc-router
-  namespace: default
+  namespace: eriktest
 roleRef:
   kind: ClusterRole
   name: services-watcher
@@ -29,6 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mc-router
+  namespace: eriktest
 spec:
   type: NodePort
   ports:
@@ -49,6 +51,7 @@ metadata:
   labels:
     run: mc-router
   name: mc-router
+  namespace: eriktest
 spec:
   selector:
     matchLabels:
