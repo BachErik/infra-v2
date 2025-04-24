@@ -28,7 +28,7 @@ spec:
             - name: TYPE
               value: "CUSTOM"
             - name: CUSTOM_SERVER
-              value: "https://cdn.discordapp.com/attachments/886554739708395521/1364970972184313896/spigot-1.8.jar?ex=680b9bc7&is=680a4a47&hm=c590c2a5fff559086cf0a5a38d134071803d1aef7f01b53d43e90335c03cdb67&"
+              value: "https://file.bacherik.de/minecraft/versions/spigot-1.8.jar"
             - name: FORCE_GAMEMODE
               value: "TRUE"
             - name: MODE
