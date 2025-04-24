@@ -35,6 +35,8 @@ spec:
               value: "CREATIVE"
             - name: ENABLE_COMMAND_BLOCK
               value: "TRUE"
+            - name: "FORCE_REDOWNLOAD"
+              value: "TRUE"
           volumeMounts:
             - name: mc2
               mountPath: /data
