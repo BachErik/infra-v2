@@ -65,7 +65,7 @@ spec:
     spec:
       serviceAccountName: mc-router
       containers:
-      - image: bacherik/mc-router:latest
+      - image: bacherik/mc-router:test
         name: mc-router
         args: ["--api-binding", ":8080", "--in-kube-cluster"]
         ports:
