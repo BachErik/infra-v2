@@ -5,6 +5,7 @@ metadata:
   namespace: eriktest
   annotations:
     mc-router.itzg.me/externalServerName: "mc1.bacherik.de"
+    external-dns.alpha.kubernetes.io/hostname: "mc1.bacherik.de"
 spec:
   selector:
     app: mc1
