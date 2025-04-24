@@ -7,11 +7,8 @@ resources:
   #- helm-release.yaml
   - mc1-pvc.yaml
   - mc2-pvc.yaml
-  - mc3-pvc.yaml
   - mc1.yaml
   - mc2.yaml
-  - mc3.yaml
   - mc1-svc.yaml
   - mc2-svc.yaml
-  - mc3-svc.yaml
   - ingress.yaml
