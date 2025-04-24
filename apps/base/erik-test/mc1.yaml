@@ -29,6 +29,8 @@ spec:
               value: "FALSE"
             - name: TYPE
               value: "SPIGOT"
+            - name: BUILD_FROM_SOURCE
+              value: "TRUE"
           volumeMounts:
             - name: mc1
               mountPath: /data
