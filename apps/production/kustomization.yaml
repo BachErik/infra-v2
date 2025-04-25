@@ -12,6 +12,6 @@ resources:
   - ../base/weave-gitops
   - ../base/kube-prometheus-stack
   - ../base/gatus
-  #- ../base/erik-test
+  - ../base/erik-test
 #  - ../base/open-webui
 #  - ../base/weblate
