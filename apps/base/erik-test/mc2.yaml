@@ -37,6 +37,8 @@ spec:
               value: "TRUE"
             - name: "FORCE_REDOWNLOAD"
               value: "TRUE"
+            - name: CREATE_CONSOLE_IN_PIPE
+              value: "true"
           volumeMounts:
             - name: mc2
               mountPath: /data
