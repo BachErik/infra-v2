@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: diskube
-        image: bacherik/diskube:latest
+        image: bacherik/diskube:pr-21
         env:
           - name: DISCORD_BOT_TOKEN
             valueFrom:
