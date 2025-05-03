@@ -9,17 +9,30 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - reposilite.bacherik.de
-    secretName: reposilite-tls
+    - secretName: bacherik-reposilite-tls
+      hosts:
+        - reposilite.bacherik.de
+    - secretName: nikoverflow-reposilite-tls
+      hosts:
+        - reposilite.nikoverflow.com
   rules:
-  - host: "reposilite.bacherik.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: reposilite
-            port:
-              name: http
+    - host: "reposilite.bacherik.de"
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: reposilite
+              port:
+                name: http
+    - host: "reposilite.nikoverflow.com"
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: reposilite
+              port:
+                name: http
