@@ -13,5 +13,6 @@ resources:
   - ../base/kube-prometheus-stack
   - ../base/gatus
   - ../base/erik-test
+  - ../base/reposilite
 #  - ../base/open-webui
 #  - ../base/weblate
