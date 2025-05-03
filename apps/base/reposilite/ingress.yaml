@@ -21,4 +21,5 @@ spec:
         backend:
           service:
             name: reposilite
-            port: http
+            port:
+              name: http
