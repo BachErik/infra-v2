@@ -1,15 +1,20 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: reposilite
-  namespace: reposilite
+  name: open-webui
+  namespace: open-webui
 spec:
   interval: 5m
   chart:
     spec:
-      chart: reposilite
-      version: "3.5.23"
+      chart: open-webui
+      version: "5.10.0"
       sourceRef:
         kind: HelmRepository
-        name: reposilite
-        namespace: reposilite
+        name: open-webui
+        namespace: open-webui
+  values:
+    ollama.models:
+        - llama2
+        - mistral
+        - deepseek-r1
