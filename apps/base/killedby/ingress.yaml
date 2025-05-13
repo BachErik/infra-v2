@@ -5,7 +5,6 @@ metadata:
   namespace: killedby
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
-    traefik.ingress.kubernetes.io/router.middlewares: error-pages-error-pages@kubernetescrd
 spec:
   ingressClassName: traefik
   tls:

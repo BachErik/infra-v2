@@ -7,7 +7,6 @@ resources:
   - longhorn/helm-repo.yaml
   - longhorn/helm-release.yaml
   - traefik.yaml
-  - error-pages.yaml
   - cf-secret.yaml
   - external-dns.yaml
   - cert-manager.yaml
