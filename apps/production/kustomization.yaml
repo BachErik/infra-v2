@@ -14,5 +14,6 @@ resources:
   - ../base/gatus
   - ../base/erik-test
   - ../base/reposilite
+  - ../base/shlink
 #  - ../base/open-webui
 #  - ../base/weblate

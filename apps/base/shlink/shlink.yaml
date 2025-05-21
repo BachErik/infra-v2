@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shlink
+  namespace: shlink
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shlink
+  template:
+    metadata:
+      labels:
+        app: shlink
+    spec:
+      containers:
+      - name: shlink
+        image: shlinkio/shlink:stable
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: shlink-config
+        - secretRef:
+            name: shlink-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shlink
+  namespace: shlink
+spec:
+  selector:
+    app: shlink
+  ports:
+  - port: 8080
+    targetPort: 8080

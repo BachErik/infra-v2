@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shlink-config
+  namespace: shlink
+data:
+  # Database
+  DB_DRIVER: "postgres"
+  DB_NAME: "shlink"
+  DB_USER: "shlink"
+  DB_HOST: "postgres"
+
+  DEFAULT_DOMAIN: "short.bacherik.de"
+  IS_HTTPS_ENABLED: "true"
+
+  # Redis (for cache/locks)
+  REDIS_SERVERS: "tcp://redis.shlink.svc.cluster.local:6379"
