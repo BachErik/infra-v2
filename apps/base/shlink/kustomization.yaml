@@ -6,5 +6,5 @@ resources:
   - config.yaml
   - postgres.yaml
   - redis.yaml
-  - short.yaml
+  - shlink.yaml
   - ingress.yaml
