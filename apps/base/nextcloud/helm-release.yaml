@@ -15,3 +15,7 @@ spec:
         namespace: nextcloud
   values:
     nextcloud.host: nextcloud.bacherik.de
+    persistence:
+      enabled: true
+      nextcloudData.enabled: true
+      nextcloud.trustedDomains: nextcloud.bacherik.de
