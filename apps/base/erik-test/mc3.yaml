@@ -27,12 +27,17 @@ spec:
               value: "1.21.5"
             - name: TYPE
               value: "PAPER"
+            - name: PAPER_CHANNEL
+              value: experimental
             - name: MODE
               value: "CREATIVE"
             - name: ENABLE_COMMAND_BLOCK
               value: "TRUE"
             - name: CREATE_CONSOLE_IN_PIPE
               value: "true"
+            - name: PLUGINS
+              value: |-
+                https://github.com/dmulloy2/ProtocolLib/releases/download/5.3.0/ProtocolLib.jar
           volumeMounts:
             - name: mc3
               mountPath: /data
