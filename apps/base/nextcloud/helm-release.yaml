@@ -18,4 +18,11 @@ spec:
     persistence:
       enabled: true
       nextcloudData.enabled: true
-      nextcloud.trustedDomains: nextcloud.bacherik.de
+    nextcloud.trustedDomains: nextcloud.bacherik.de
+    externalDatabase.enabled: true
+    mariadb.enabled: true
+    postgresql.enabled: true
+    postgresql.primary.persistence.enabled: true
+    redis.enabled: true
+    cronjob.enabled: true
+    hpa: true
