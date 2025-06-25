@@ -25,4 +25,4 @@ spec:
     postgresql.primary.persistence.enabled: true
     redis.enabled: true
     cronjob.enabled: true
-    hpa: true
+    hpa.enabled: true
