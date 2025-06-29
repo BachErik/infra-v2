@@ -39,6 +39,9 @@ spec:
               value: "TRUE"
             - name: CREATE_CONSOLE_IN_PIPE
               value: "true"
+            - name: OPS
+              value: |-
+                BachErik_
           volumeMounts:
             - name: mc2
               mountPath: /data
