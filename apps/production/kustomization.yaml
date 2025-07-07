@@ -4,6 +4,7 @@ resources:
   - ../base/traefik
   - ../base/nginx-download
   - ../base/gethomepage
+  - ../base/homepage
   - ../base/diskube
   - ../base/glance
   - ../base/haste-server

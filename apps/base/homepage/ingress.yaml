@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bacherik-site
+  namespace: homepage
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+spec:
+  ingressClassName: traefik
+  tls:
+  - hosts:
+    - new.bacherik.de
+    secretName: bacherik-tls
+
+  rules:
+  - host: "new.bacherik.de"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bacherik-site
+            port:
+              number: 80
