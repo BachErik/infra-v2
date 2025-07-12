@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: points
+  namespace: points
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - points.bacherik.de
+      secretName: points-tls
+    - hosts:
+        - pointsdb.bacherik.de
+      secretName: pointsdb-tls
+
+  rules:
+    - host: "points.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: points
+                port:
+                  number: 80
+
+    - host: "pointsdb.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: couchdb
+                port:
+                  number: 5984
