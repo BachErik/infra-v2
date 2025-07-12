@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: punkte-board
+  name: points
   namespace: points
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: punkte-board
+      app: points
   template:
     metadata:
       labels:
-        app: punkte-board
+        app: points
     spec:
       imagePullSecrets:
         - name: ghcr
       containers:
-        - name: punkte-board
+        - name: points
           image: ghcr.io/bacherik/points:latest
           envFrom:
             - secretRef:
