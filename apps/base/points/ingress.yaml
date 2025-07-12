@@ -27,13 +27,13 @@ spec:
                 port:
                   number: 80
 
-    - host: "pointsdb.bacherik.de"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: couchdb
-                port:
-                  number: 5984
+    #- host: "pointsdb.bacherik.de"
+      #http:
+       # paths:
+        #  - path: /
+         #   pathType: Prefix
+          #  backend:
+           #   service:
+            #    name: couchdb
+             #   port:
+              #    number: 5984

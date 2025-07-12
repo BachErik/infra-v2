@@ -4,10 +4,10 @@ namespace: points
 resources:
   - namespace.yaml
   - ghcr.yaml
-  - couchdb-secret.yaml
-  - pvc.yaml
-  - deployment-couchdb.yaml
-  - service-couchdb.yaml
+  #- couchdb-secret.yaml
+  #- pvc.yaml
+  #- deployment-couchdb.yaml
+  #- service-couchdb.yaml
   - secret-web.yaml
   - deployment-web.yaml
   - service-web.yaml
