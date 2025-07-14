@@ -251,6 +251,8 @@ kind: IngressRoute
 metadata:
   name: redirect-bsky-kunamel
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -270,6 +272,8 @@ kind: IngressRoute
 metadata:
   name: redirect-gh-kunamel
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -289,6 +293,8 @@ kind: IngressRoute
 metadata:
   name: redirect-github-kunamel
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -308,6 +314,8 @@ kind: IngressRoute
 metadata:
   name: redirect-root-kunamel
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -327,6 +335,8 @@ kind: IngressRoute
 metadata:
   name: redirect-twitter-kunamel
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -346,6 +356,8 @@ kind: IngressRoute
 metadata:
   name: redirect-x-kunamel
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -365,6 +377,8 @@ kind: IngressRoute
 metadata:
   name: redirect-youtube-kunamel
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -384,6 +398,8 @@ kind: IngressRoute
 metadata:
   name: redirect-yt-kunamel
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -403,6 +419,8 @@ kind: IngressRoute
 metadata:
   name: redirect-bluesky-lyre
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -422,6 +440,8 @@ kind: IngressRoute
 metadata:
   name: redirect-bsky-lyre
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -441,6 +461,8 @@ kind: IngressRoute
 metadata:
   name: redirect-gh-lyre
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -460,6 +482,8 @@ kind: IngressRoute
 metadata:
   name: redirect-github-lyre
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -479,6 +503,8 @@ kind: IngressRoute
 metadata:
   name: redirect-root-lyre
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -498,6 +524,8 @@ kind: IngressRoute
 metadata:
   name: redirect-twitter-lyre
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -517,6 +545,8 @@ kind: IngressRoute
 metadata:
   name: redirect-x-lyre
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -536,6 +566,8 @@ kind: IngressRoute
 metadata:
   name: redirect-root-bachflow
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -555,6 +587,8 @@ kind: IngressRoute
 metadata:
   name: redirect-github-bachflow
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -574,6 +608,8 @@ kind: IngressRoute
 metadata:
   name: redirect-gh-bachflow
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -593,6 +629,8 @@ kind: IngressRoute
 metadata:
   name: redirect-dc-bacherik
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
@@ -612,6 +650,8 @@ kind: IngressRoute
 metadata:
   name: redirect-discord-bacherik
   namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.example.com
 spec:
   entryPoints:
     - web
