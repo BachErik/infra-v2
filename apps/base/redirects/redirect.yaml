@@ -1,0 +1,431 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: noop
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: nonexistent
+---
+# kunamel.app-Redirects
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-bsky-kunamel
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://bsky\\.kunamel\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://bsky.app/profile/kunamel.app/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: bsky.kunamel.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-gh-kunamel
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://gh\\.kunamel\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/Kunamel/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: gh.kunamel.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-github-kunamel
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://github\\.kunamel\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/Kunamel/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: github.kunamel.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-root-kunamel
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://kunamel\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/Kunamel/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: kunamel.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-twitter-kunamel
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://twitter\\.kunamel\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://x.com/Kunamelapp/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: twitter.kunamel.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-x-kunamel
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://x\\.kunamel\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://x.com/Kunamelapp/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: x.kunamel.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-youtube-kunamel
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://youtube\\.kunamel\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://www.youtube.com/@Kunamel/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: youtube.kunamel.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-yt-kunamel
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://yt\\.kunamel\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://www.youtube.com/@Kunamel/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: yt.kunamel.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+
+---
+# lyre.works-Redirects
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-bluesky-lyre
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://bluesky\\.lyre\\.works(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://bsky.app/profile/lyre.works/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: bluesky.lyre.works
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-bsky-lyre
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://bsky\\.lyre\\.works(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://bsky.app/profile/lyre.works/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: bsky.lyre.works
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-gh-lyre
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://gh\\.lyre\\.works(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/LyreWorks/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: gh.lyre.works
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-github-lyre
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://github\\.lyre\\.works(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/LyreWorks/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: github.lyre.works
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-root-lyre
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://lyre\\.works(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/LyreWorks/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: lyre.works
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-twitter-lyre
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://twitter\\.lyre\\.works(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://x.com/LyreWorks/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: twitter.lyre.works
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-x-lyre
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://x\\.lyre\\.works(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://x.com/LyreWorks/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: x.lyre.works
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+# bachflow.app-Redirects
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-root-bachflow
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://bachflow\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/BachFlow/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: bachflow.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-github-bachflow
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://github\\.bachflow\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/BachFlow/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: github.bachflow.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redirect-gh-bachflow
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/redirect-regex: "^https?://gh\\.bachflow\\.app(?:/(.*))?"
+    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/BachFlow/$1"
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+    - host: gh.bachflow.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: noop
+                port:
+                  number: 80

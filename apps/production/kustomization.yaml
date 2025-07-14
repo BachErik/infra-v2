@@ -16,6 +16,7 @@ resources:
   - ../base/erik-test
   - ../base/reposilite
   - ../base/points
+  - ../base/redirects
   #- ../base/shlink
 #  - ../base/open-webui
 #  - ../base/weblate
