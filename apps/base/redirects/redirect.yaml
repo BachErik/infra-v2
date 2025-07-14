@@ -32,35 +32,38 @@ spec:
     - port: 80
       targetPort: 8080
 ---
-# kunamel.app-Redirects
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+# 1) Middleware: RedirectRegex für bsky.kunamel.app
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
 metadata:
   name: redirect-bsky-kunamel
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    ingress.kubernetes.io/ssl-redirect: "true"
-    ingress.kubernetes.io/redirect-regex: "^https?://bsky.kunamel.app(?:/(.*))?"
-    ingress.kubernetes.io/redirect-replacement: "https://bsky.app/profile/kunamel.app/$1"
-    ingress.kubernetes.io/redirect-permanent: "true"
-    cert-manager.io/cluster-issuer: letsencrypt
 spec:
-  tls:
-  - hosts:
-    - bsky.kunamel.app
-    secretName: bsky.kunamel.app-tls
-  rules:
-    - host: bsky.kunamel.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-  #          backend:
-  #            service:
-  #              name: echo
-  #              port:
-  #                number: 80
+  redirectRegex:
+    # regex muss in YAML doppelt escaped werden
+    regex: "^https?://bsky\\.kunamel\\.app(?:/(.*))?"
+    replacement: "https://bsky.app/profile/kunamel.app/${1}"
+    permanent: true
+
+---
+# 2) IngressRoute: Host-Matcher + Middleware + interne noop-Service
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: redirect-bsky-kunamel
+  namespace: default
+spec:
+  entryPoints:
+    - web       # HTTP
+    - websecure # HTTPS (Traefik liefert hier schon dein Certbot‑Zertifikat aus)
+  routes:
+    - match: Host(`bsky.kunamel.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-bsky-kunamel
+      services:
+        - name: noop@internal   # kein Deployment nötig
+          kind: TraefikService
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
