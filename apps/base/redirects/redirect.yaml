@@ -41,7 +41,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     ingress.kubernetes.io/ssl-redirect: "true"
-    ingress.kubernetes.io/redirect-regex: "^https?://bsky\\.kunamel\\.app(?:/(.*))?"
+    ingress.kubernetes.io/redirect-regex: "^https?://bsky.kunamel.app(?:/(.*))?"
     ingress.kubernetes.io/redirect-replacement: "https://bsky.app/profile/kunamel.app/$1"
     ingress.kubernetes.io/redirect-permanent: "true"
     cert-manager.io/cluster-issuer: letsencrypt
