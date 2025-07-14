@@ -40,10 +40,16 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://bsky\\.kunamel\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://bsky.app/profile/kunamel.app/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    ingress.kubernetes.io/redirect-regex: "^https?://bsky\\.kunamel\\.app(?:/(.*))?"
+    ingress.kubernetes.io/redirect-replacement: "https://bsky.app/profile/kunamel.app/$1"
+    ingress.kubernetes.io/redirect-permanent: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
+  tls:
+  - hosts:
+    - bsky.kunamel.app
+    secretName: bsky.kunamel.app-tls
   rules:
     - host: bsky.kunamel.app
       http:
