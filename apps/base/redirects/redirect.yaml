@@ -1,15 +1,36 @@
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo
+  template:
+    metadata:
+      labels:
+        app: echo
+    spec:
+      containers:
+        - name: echo
+          image: k8s.gcr.io/echoserver:1.10
+          ports:
+            - containerPort: 8080
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: noop
+  name: echo
   namespace: default
 spec:
-  type: ExternalName
-  externalName: bacherik.de   # beliebiger, existierender DNS-Name
+  selector:
+    app: echo
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8080
 ---
 # kunamel.app-Redirects
 apiVersion: networking.k8s.io/v1
