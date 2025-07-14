@@ -1,38 +1,7 @@
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: echo
-  namespace: default
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: echo
-  template:
-    metadata:
-      labels:
-        app: echo
-    spec:
-      containers:
-        - name: echo
-          image: k8s.gcr.io/echoserver:1.10
-          ports:
-            - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: echo
-  namespace: default
-spec:
-  selector:
-    app: echo
-  ports:
-    - port: 80
-      targetPort: 8080
----
-# 1) Middleware: RedirectRegex für bsky.kunamel.app
+# -------------------------------
+# Middleware-Objekte für Redirects
+# -------------------------------
+
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -40,13 +9,243 @@ metadata:
   namespace: default
 spec:
   redirectRegex:
-    # regex muss in YAML doppelt escaped werden
     regex: "^https?://bsky\\.kunamel\\.app(?:/(.*))?"
     replacement: "https://bsky.app/profile/kunamel.app/${1}"
     permanent: true
 
 ---
-# 2) IngressRoute: Host-Matcher + Middleware + interne noop-Service
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-gh-kunamel
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://gh\\.kunamel\\.app(?:/(.*))?"
+    replacement: "https://github.com/Kunamel/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-github-kunamel
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://github\\.kunamel\\.app(?:/(.*))?"
+    replacement: "https://github.com/Kunamel/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-root-kunamel
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://kunamel\\.app(?:/(.*))?"
+    replacement: "https://github.com/Kunamel/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-twitter-kunamel
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://twitter\\.kunamel\\.app(?:/(.*))?"
+    replacement: "https://x.com/Kunamelapp/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-x-kunamel
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://x\\.kunamel\\.app(?:/(.*))?"
+    replacement: "https://x.com/Kunamelapp/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-youtube-kunamel
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://youtube\\.kunamel\\.app(?:/(.*))?"
+    replacement: "https://www.youtube.com/@Kunamel/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-yt-kunamel
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://yt\\.kunamel\\.app(?:/(.*))?"
+    replacement: "https://www.youtube.com/@Kunamel/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-bluesky-lyre
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://bluesky\\.lyre\\.works(?:/(.*))?"
+    replacement: "https://bsky.app/profile/lyre.works/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-bsky-lyre
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://bsky\\.lyre\\.works(?:/(.*))?"
+    replacement: "https://bsky.app/profile/lyre.works/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-gh-lyre
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://gh\\.lyre\\.works(?:/(.*))?"
+    replacement: "https://github.com/LyreWorks/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-github-lyre
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://github\\.lyre\\.works(?:/(.*))?"
+    replacement: "https://github.com/LyreWorks/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-root-lyre
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://lyre\\.works(?:/(.*))?"
+    replacement: "https://github.com/LyreWorks/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-twitter-lyre
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://twitter\\.lyre\\.works(?:/(.*))?"
+    replacement: "https://x.com/LyreWorks/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-x-lyre
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://x\\.lyre\\.works(?:/(.*))?"
+    replacement: "https://x.com/LyreWorks/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-root-bachflow
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://bachflow\\.app(?:/(.*))?"
+    replacement: "https://github.com/BachFlow/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-github-bachflow
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://github\\.bachflow\\.app(?:/(.*))?"
+    replacement: "https://github.com/BachFlow/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-gh-bachflow
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://gh\\.bachflow\\.app(?:/(.*))?"
+    replacement: "https://github.com/BachFlow/${1}"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-dc-bacherik
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://dc\\.bacherik\\.de(?:/(.*))?"
+    replacement: "https://discord.gg/9K8hVWcjFW"
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-discord-bacherik
+  namespace: default
+spec:
+  redirectRegex:
+    regex: "^https?://discord\\.bacherik\\.de(?:/(.*))?"
+    replacement: "https://discord.gg/9K8hVWcjFW"
+    permanent: true
+
+# -------------------------------
+# IngressRoute-Objekte für Redirects
+# -------------------------------
+
+---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -54,407 +253,374 @@ metadata:
   namespace: default
 spec:
   entryPoints:
-    - web       # HTTP
-    - websecure # HTTPS (Traefik liefert hier schon dein Certbot‑Zertifikat aus)
+    - web
+    - websecure
   routes:
     - match: Host(`bsky.kunamel.app`)
       kind: Rule
       middlewares:
         - name: redirect-bsky-kunamel
       services:
-        - name: noop@internal   # kein Deployment nötig
+        - name: noop@internal
           kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-gh-kunamel
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://gh\\.kunamel\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/Kunamel/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: gh.kunamel.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`gh.kunamel.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-gh-kunamel
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-github-kunamel
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://github\\.kunamel\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/Kunamel/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: github.kunamel.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`github.kunamel.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-github-kunamel
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-root-kunamel
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://kunamel\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/Kunamel/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: kunamel.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`kunamel.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-root-kunamel
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-twitter-kunamel
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://twitter\\.kunamel\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://x.com/Kunamelapp/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: twitter.kunamel.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`twitter.kunamel.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-twitter-kunamel
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-x-kunamel
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://x\\.kunamel\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://x.com/Kunamelapp/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: x.kunamel.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`x.kunamel.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-x-kunamel
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-youtube-kunamel
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://youtube\\.kunamel\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://www.youtube.com/@Kunamel/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: youtube.kunamel.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`youtube.kunamel.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-youtube-kunamel
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-yt-kunamel
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://yt\\.kunamel\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://www.youtube.com/@Kunamel/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: yt.kunamel.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`yt.kunamel.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-yt-kunamel
+      services:
+        - name: noop@internal
+          kind: TraefikService
 
 ---
-# lyre.works-Redirects
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-bluesky-lyre
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://bluesky\\.lyre\\.works(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://bsky.app/profile/lyre.works/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: bluesky.lyre.works
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`bluesky.lyre.works`)
+      kind: Rule
+      middlewares:
+        - name: redirect-bluesky-lyre
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-bsky-lyre
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://bsky\\.lyre\\.works(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://bsky.app/profile/lyre.works/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: bsky.lyre.works
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`bsky.lyre.works`)
+      kind: Rule
+      middlewares:
+        - name: redirect-bsky-lyre
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-gh-lyre
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://gh\\.lyre\\.works(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/LyreWorks/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: gh.lyre.works
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`gh.lyre.works`)
+      kind: Rule
+      middlewares:
+        - name: redirect-gh-lyre
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-github-lyre
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://github\\.lyre\\.works(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/LyreWorks/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: github.lyre.works
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`github.lyre.works`)
+      kind: Rule
+      middlewares:
+        - name: redirect-github-lyre
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-root-lyre
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://lyre\\.works(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/LyreWorks/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: lyre.works
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`lyre.works`)
+      kind: Rule
+      middlewares:
+        - name: redirect-root-lyre
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-twitter-lyre
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://twitter\\.lyre\\.works(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://x.com/LyreWorks/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: twitter.lyre.works
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`twitter.lyre.works`)
+      kind: Rule
+      middlewares:
+        - name: redirect-twitter-lyre
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-x-lyre
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://x\\.lyre\\.works(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://x.com/LyreWorks/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: x.lyre.works
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`x.lyre.works`)
+      kind: Rule
+      middlewares:
+        - name: redirect-x-lyre
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-# bachflow.app-Redirects
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-root-bachflow
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://bachflow\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/BachFlow/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: bachflow.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`bachflow.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-root-bachflow
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-github-bachflow
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://github\\.bachflow\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/BachFlow/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: github.bachflow.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`github.bachflow.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-github-bachflow
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
   name: redirect-gh-bachflow
   namespace: default
-  annotations:
-    kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/redirect-regex: "^https?://gh\\.bachflow\\.app(?:/(.*))?"
-    traefik.ingress.kubernetes.io/redirect-replacement: "https://github.com/BachFlow/$1"
-    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
-  rules:
-    - host: gh.bachflow.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`gh.bachflow.app`)
+      kind: Rule
+      middlewares:
+        - name: redirect-gh-bachflow
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: redirect-dc-bacherik
+  namespace: default
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`dc.bacherik.de`)
+      kind: Rule
+      middlewares:
+        - name: redirect-dc-bacherik
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: redirect-dc-bacherik
+  namespace: default
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`discord.bacherik.de`)
+      kind: Rule
+      middlewares:
+        - name: redirect-discord-bacherik
+      services:
+        - name: noop@internal
+          kind: TraefikService
