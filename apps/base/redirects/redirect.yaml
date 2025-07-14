@@ -50,17 +50,17 @@ spec:
   - hosts:
     - bsky.kunamel.app
     secretName: bsky.kunamel.app-tls
-  rules:
-    - host: bsky.kunamel.app
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
+  #rules:
+  #  - host: bsky.kunamel.app
+  #    http:
+  #      paths:
+  #        - path: /
+  #          pathType: Prefix
+  #          backend:
+  #            service:
+  #              name: echo
+  #              port:
+  #                number: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
