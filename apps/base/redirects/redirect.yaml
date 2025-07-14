@@ -5,12 +5,11 @@ metadata:
   name: noop
   namespace: default
 spec:
+  type: ExternalName
+  externalName: bacherik.de   # beliebiger, existierender DNS-Name
   ports:
     - port: 80
-      protocol: TCP
       targetPort: 80
-  selector:
-    app: nonexistent
 ---
 # kunamel.app-Redirects
 apiVersion: networking.k8s.io/v1
