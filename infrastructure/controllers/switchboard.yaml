@@ -4,8 +4,10 @@ metadata:
   name: switchboard
   namespace: switchboard
 spec:
-  interval: 24h
+  interval: 5m0s
   url: oci://ghcr.io/borchero/charts/switchboard
+  ref:
+    tag: "0.7.1"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -19,7 +21,7 @@ spec:
       chart: switchboard
       version: "0.7.1"
       sourceRef:
-        kind: HelmRepository
+        kind: OCIRepository
         name: switchboard
         namespace: switchboard
       interval: 12h
