@@ -43,7 +43,7 @@ spec:
       - --source=traefik-proxy
     rbac:
       create: true
-      extraClusterRoleRules:
+      additionalPermissions:
         - apiGroups:
             - traefik.containo.us
             - traefik.io
