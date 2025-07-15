@@ -252,7 +252,7 @@ metadata:
   name: redirect-bsky-kunamel
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: traefik.example.com
+    external-dns.alpha.kubernetes.io/hostname: bsky.kunamel.app
 spec:
   entryPoints:
     - web
@@ -420,7 +420,7 @@ metadata:
   name: redirect-bluesky-lyre
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: bluesky.lyre.works
+    external-dns.alpha.kubernetes.io/hostname: bluesky.lyre.works
 spec:
   entryPoints:
     - web
@@ -567,7 +567,7 @@ metadata:
   name: redirect-root-bachflow
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: bachflow.app
+    external-dns.alpha.kubernetes.io/hostname: bachflow.app
 spec:
   entryPoints:
     - web
