@@ -251,8 +251,6 @@ kind: IngressRoute
 metadata:
   name: redirect-bsky-kunamel
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: bsky.kunamel.app
 spec:
   entryPoints:
     - web
@@ -272,8 +270,6 @@ kind: IngressRoute
 metadata:
   name: redirect-gh-kunamel
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: gh.kunamel.app
 spec:
   entryPoints:
     - web
@@ -293,8 +289,6 @@ kind: IngressRoute
 metadata:
   name: redirect-github-kunamel
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: github.kunamel.app
 spec:
   entryPoints:
     - web
@@ -314,8 +308,6 @@ kind: IngressRoute
 metadata:
   name: redirect-root-kunamel
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: kunamel.app
 spec:
   entryPoints:
     - web
@@ -335,8 +327,6 @@ kind: IngressRoute
 metadata:
   name: redirect-twitter-kunamel
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: twitter.kunamel.app
 spec:
   entryPoints:
     - web
@@ -356,8 +346,6 @@ kind: IngressRoute
 metadata:
   name: redirect-x-kunamel
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: x.kunamel.app
 spec:
   entryPoints:
     - web
@@ -377,8 +365,6 @@ kind: IngressRoute
 metadata:
   name: redirect-youtube-kunamel
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: youtube.kunamel.app
 spec:
   entryPoints:
     - web
@@ -398,8 +384,6 @@ kind: IngressRoute
 metadata:
   name: redirect-yt-kunamel
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: yt.kunamel.app
 spec:
   entryPoints:
     - web
@@ -419,8 +403,6 @@ kind: IngressRoute
 metadata:
   name: redirect-bluesky-lyre
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: bluesky.lyre.works
 spec:
   entryPoints:
     - web
@@ -440,8 +422,6 @@ kind: IngressRoute
 metadata:
   name: redirect-bsky-lyre
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: bsky.lyre.works
 spec:
   entryPoints:
     - web
@@ -461,8 +441,6 @@ kind: IngressRoute
 metadata:
   name: redirect-gh-lyre
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: gh.lyre.works
 spec:
   entryPoints:
     - web
@@ -482,8 +460,6 @@ kind: IngressRoute
 metadata:
   name: redirect-github-lyre
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: github.lyre.works
 spec:
   entryPoints:
     - web
@@ -503,8 +479,6 @@ kind: IngressRoute
 metadata:
   name: redirect-root-lyre
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: lyre.works
 spec:
   entryPoints:
     - web
@@ -524,8 +498,6 @@ kind: IngressRoute
 metadata:
   name: redirect-twitter-lyre
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: twitter.lyre.works
 spec:
   entryPoints:
     - web
@@ -545,8 +517,6 @@ kind: IngressRoute
 metadata:
   name: redirect-x-lyre
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: x.lyre.works
 spec:
   entryPoints:
     - web
@@ -566,8 +536,6 @@ kind: IngressRoute
 metadata:
   name: redirect-root-bachflow
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: bachflow.app
 spec:
   entryPoints:
     - web
@@ -587,8 +555,6 @@ kind: IngressRoute
 metadata:
   name: redirect-github-bachflow
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: github.bachflow.app
 spec:
   entryPoints:
     - web
@@ -608,8 +574,6 @@ kind: IngressRoute
 metadata:
   name: redirect-gh-bachflow
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: gh.bachflow.app
 spec:
   entryPoints:
     - web
@@ -629,8 +593,6 @@ kind: IngressRoute
 metadata:
   name: redirect-dc-bacherik
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: dc.bacherik.de
 spec:
   entryPoints:
     - web
@@ -650,8 +612,6 @@ kind: IngressRoute
 metadata:
   name: redirect-discord-bacherik
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/target: discord.bacherik.de
 spec:
   entryPoints:
     - web
