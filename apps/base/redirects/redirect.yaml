@@ -252,7 +252,7 @@ metadata:
   name: redirect-bsky-kunamel
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://bsky.app/profile/kunamel.app/"
+    external-dns.alpha.kubernetes.io/target: "bsky.app/profile/kunamel.app"
 spec:
   entryPoints:
     - web
@@ -273,7 +273,7 @@ metadata:
   name: redirect-gh-kunamel
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://github.com/Kunamel/"
+    external-dns.alpha.kubernetes.io/target: "github.com/Kunamel"
 spec:
   entryPoints:
     - web
@@ -294,7 +294,7 @@ metadata:
   name: redirect-github-kunamel
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://github.com/Kunamel/"
+    external-dns.alpha.kubernetes.io/target: "github.com/Kunamel"
 spec:
   entryPoints:
     - web
@@ -315,7 +315,7 @@ metadata:
   name: redirect-root-kunamel
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://github.com/Kunamel/"
+    external-dns.alpha.kubernetes.io/target: "github.com/Kunamel"
 spec:
   entryPoints:
     - web
@@ -336,7 +336,7 @@ metadata:
   name: redirect-twitter-kunamel
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://x.com/Kunamelapp/"
+    external-dns.alpha.kubernetes.io/target: "x.com/Kunamelapp"
 spec:
   entryPoints:
     - web
@@ -357,7 +357,7 @@ metadata:
   name: redirect-x-kunamel
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://x.com/Kunamelapp/"
+    external-dns.alpha.kubernetes.io/target: "x.com/Kunamelapp"
 spec:
   entryPoints:
     - web
@@ -378,7 +378,7 @@ metadata:
   name: redirect-youtube-kunamel
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://www.youtube.com/@Kunamel/"
+    external-dns.alpha.kubernetes.io/target: "www.youtube.com/@Kunamel"
 spec:
   entryPoints:
     - web
@@ -399,7 +399,7 @@ metadata:
   name: redirect-yt-kunamel
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://www.youtube.com/@Kunamel/"
+    external-dns.alpha.kubernetes.io/target: "www.youtube.com/@Kunamel"
 spec:
   entryPoints:
     - web
@@ -420,7 +420,7 @@ metadata:
   name: redirect-bluesky-lyre
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://bsky.app/profile/lyre.works/"
+    external-dns.alpha.kubernetes.io/target: "bsky.app/profile/lyre.works"
 spec:
   entryPoints:
     - web
@@ -441,7 +441,7 @@ metadata:
   name: redirect-bsky-lyre
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://bsky.app/profile/lyre.works/"
+    external-dns.alpha.kubernetes.io/target: "bsky.app/profile/lyre.works"
 spec:
   entryPoints:
     - web
@@ -462,7 +462,7 @@ metadata:
   name: redirect-gh-lyre
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://github.com/LyreWorks/"
+    external-dns.alpha.kubernetes.io/target: "github.com/LyreWorks"
 spec:
   entryPoints:
     - web
@@ -483,7 +483,7 @@ metadata:
   name: redirect-github-lyre
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://github.com/LyreWorks/"
+    external-dns.alpha.kubernetes.io/target: "github.com/LyreWorks"
 spec:
   entryPoints:
     - web
@@ -504,7 +504,7 @@ metadata:
   name: redirect-root-lyre
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://github.com/LyreWorks/"
+    external-dns.alpha.kubernetes.io/target: "github.com/LyreWorks"
 spec:
   entryPoints:
     - web
@@ -525,7 +525,7 @@ metadata:
   name: redirect-twitter-lyre
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://x.com/LyreWorks/"
+    external-dns.alpha.kubernetes.io/target: "x.com/LyreWorks"
 spec:
   entryPoints:
     - web
@@ -546,7 +546,7 @@ metadata:
   name: redirect-x-lyre
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://x.com/LyreWorks/"
+    external-dns.alpha.kubernetes.io/target: "x.com/LyreWorks"
 spec:
   entryPoints:
     - web
@@ -567,7 +567,7 @@ metadata:
   name: redirect-root-bachflow
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://github.com/BachFlow/"
+    external-dns.alpha.kubernetes.io/target: "github.com/BachFlow"
 spec:
   entryPoints:
     - web
@@ -588,7 +588,7 @@ metadata:
   name: redirect-github-bachflow
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://github.com/BachFlow/"
+    external-dns.alpha.kubernetes.io/target: "github.com/BachFlow"
 spec:
   entryPoints:
     - web
@@ -609,7 +609,7 @@ metadata:
   name: redirect-gh-bachflow
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://github.com/BachFlow/"
+    external-dns.alpha.kubernetes.io/target: "github.com/BachFlow"
 spec:
   entryPoints:
     - web
@@ -630,7 +630,7 @@ metadata:
   name: redirect-dc-bacherik
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://discord.gg/9K8hVWcjFW"
+    external-dns.alpha.kubernetes.io/target: "discord.gg/9K8hVWcjFW"
 spec:
   entryPoints:
     - web
@@ -651,7 +651,7 @@ metadata:
   name: redirect-discord-bacherik
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/target: "https://discord.gg/9K8hVWcjFW"
+    external-dns.alpha.kubernetes.io/target: "discord.gg/9K8hVWcjFW"
 spec:
   entryPoints:
     - web
