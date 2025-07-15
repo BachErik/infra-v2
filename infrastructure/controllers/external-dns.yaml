@@ -41,7 +41,7 @@ spec:
             key: apiKey
     extraArgs:
       - --source=traefik-proxy
-      - --traefik-disable-legacy=true
+      - --traefik-disable-legacy
     rbac:
       create: true
       additionalPermissions:
