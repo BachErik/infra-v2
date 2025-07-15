@@ -39,3 +39,19 @@ spec:
           secretKeyRef:
             name: cloudflare-api-key
             key: apiKey
+    extraArgs:
+      - --source=traefik-proxy
+    rbac:
+      create: true
+      extraClusterRoleRules:
+        - apiGroups:
+            - traefik.containo.us
+            - traefik.io
+          resources:
+            - ingressroutes
+            - ingressroutetcps
+            - ingressrouteudps
+          verbs:
+            - get
+            - list
+            - watch
