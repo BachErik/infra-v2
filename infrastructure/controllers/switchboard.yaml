@@ -15,8 +15,6 @@ metadata:
   namespace: switchboard
 spec:
   interval: 30m
-  install:
-    createNamespace: true
   chart:
     spec:
       chart: switchboard
