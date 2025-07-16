@@ -16,6 +16,8 @@ metadata:
   namespace: switchboard
 spec:
   interval: 30m
+  install:
+    createNamespace: true
   chart:
     spec:
       chart: switchboard
@@ -26,6 +28,9 @@ spec:
         namespace: switchboard
       interval: 12h
   values:
+    integrations.certManager:
+      enabled: true
+      issuer: "letsencrypt"
     integrations.externalDNS:
       enabled: true
       targetService.name: traefik
