@@ -15,6 +15,8 @@ metadata:
   namespace: switchboard
 spec:
   interval: 30m
+  install:
+    createNamespace: true
   chart:
     spec:
       chart: switchboard
@@ -24,7 +26,6 @@ spec:
         name: switchboard
         namespace: switchboard
       interval: 12h
-      createNamespace: true
   values:
     integrations:
       certManager:
