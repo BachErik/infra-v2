@@ -33,9 +33,13 @@ spec:
     integrations:
       certManager:
         enabled: true
-        issuer: "letsencrypt"
-      externalDNS:
-        enabled: true
-        targetService:
-          name: traefik
-          namespace: traefik
+        certificateTemplate:
+          spec:
+            issuerRef:
+              name: letsencrypt
+              kind: ClusterIssuer
+    externalDNS:
+      enabled: true
+      targetService:
+        name: traefik
+        namespace: traefik
