@@ -10,4 +10,3 @@ resources:
   - cf-secret.yaml
   - external-dns.yaml
   - cert-manager.yaml
-  - switchboard.yaml
