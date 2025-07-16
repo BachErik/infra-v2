@@ -28,10 +28,12 @@ spec:
         namespace: switchboard
       interval: 12h
   values:
-    integrations.certManager:
-      enabled: true
-      issuer: "letsencrypt"
-    integrations.externalDNS:
-      enabled: true
-      targetService.name: traefik
-      targetService.namespace: traefik
+    integrations:
+      certManager:
+        enabled: true
+        issuer: "letsencrypt"
+      externalDNS:
+        enabled: true
+        targetService:
+          name: traefik
+          namespace: traefik
