@@ -38,8 +38,8 @@ spec:
             issuerRef:
               name: letsencrypt
               kind: ClusterIssuer
-    externalDNS:
-      enabled: true
-      targetService:
-        name: traefik
-        namespace: traefik
+      externalDNS:
+        enabled: true
+        targetService:
+          name: traefik
+          namespace: traefik
