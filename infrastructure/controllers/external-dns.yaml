@@ -39,22 +39,3 @@ spec:
           secretKeyRef:
             name: cloudflare-api-key
             key: apiKey
-    extraArgs:
-      - --source=ingress
-      - --source=service
-      - --source=traefik-proxy
-      - --traefik-disable-legacy
-    rbac:
-      create: true
-      additionalPermissions:
-        - apiGroups:
-            - traefik.containo.us
-            - traefik.io
-          resources:
-            - ingressroutes
-            - ingressroutetcps
-            - ingressrouteudps
-          verbs:
-            - get
-            - list
-            - watch

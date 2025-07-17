@@ -14,10 +14,11 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redirect-bluesky-lyre-pod
+  name: redirect-bluesky-lyre
   namespace: default
+  labels:
+    app: redirect-bluesky-lyre-pod
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: redirect-bluesky-lyre-pod
@@ -27,11 +28,8 @@ spec:
         app: redirect-bluesky-lyre-pod
     spec:
       containers:
-        - name: noop
-          image: hashicorp/http-echo:0.2.3
-          args:
-            - "-text=You shouldn't be seeing this. Try to reload and hopefully you will be redirected the right way. If not just go to: "
-            - "-listen=:80"
+        - name: redirect-bluesky-lyre-pod
+          image: traefik/whoami
           ports:
             - containerPort: 80
 ---
@@ -39,16 +37,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: redirect-bluesky-lyre
+  name:  redirect-bluesky-lyre
   namespace: default
 spec:
-  ipFamilies: ["IPv4"]
   selector:
-    app: redirect-bluesky-lyre-pod
-  type: ClusterIP
+    app:  redirect-bluesky-lyre-pod
+  type:  ClusterIP
   ports:
-    - name: http
-      port: 80
+    - name:  http
+      port:  80
 ---
 # 4) Ingress tying it all together
 apiVersion: networking.k8s.io/v1
