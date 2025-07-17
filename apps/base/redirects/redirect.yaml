@@ -42,6 +42,7 @@ metadata:
   name: redirect-bluesky-lyre
   namespace: default
 spec:
+  ipFamilies: "IPv4"
   selector:
     app: redirect-bluesky-lyre-pod
   type: ClusterIP
