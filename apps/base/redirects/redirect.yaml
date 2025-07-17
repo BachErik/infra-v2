@@ -15,7 +15,7 @@ metadata:
   name: redirect-bluesky-lyre
   namespace: default
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: bluesky.lyre.works
+    external-dns.alpha.kubernetes.io/target: bluesky.lyre.works
 spec:
   entryPoints:
     - web
