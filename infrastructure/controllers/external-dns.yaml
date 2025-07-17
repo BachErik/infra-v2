@@ -43,7 +43,7 @@ spec:
       - --source=ingress
       - --source=service
       - --source=traefik-proxy
-      - --traefik-disable-legacy=true
+      - --traefik-disable-legacy
     rbac:
       create: true
       additionalPermissions:
