@@ -1,3 +1,4 @@
+# 1) Traefik Middleware for the bluesky redirect
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -9,43 +10,67 @@ spec:
     replacement: "https://bsky.app/profile/lyre.works/${1}"
     permanent: true
 ---
+# 2) Placeholder Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redirect-bluesky-lyre-pod
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redirect-bluesky-lyre-pod
+  template:
+    metadata:
+      labels:
+        app: redirect-bluesky-lyre-pod
+    spec:
+      containers:
+        - name: noop
+          image: hashicorp/http-echo:0.2.3
+          args:
+            - "-text=You shouldn't be seeing this. Try to reload and hopefully you will be redirected the right way. If not just go to: "
+            - "-listen=:80"
+          ports:
+            - containerPort: 80
+---
+# 3) Service for the Deployment
 apiVersion: v1
 kind: Service
 metadata:
   name: redirect-bluesky-lyre
   namespace: default
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: bluesky.lyre.works
 spec:
-  clusterIP: None
+  selector:
+    app: redirect-bluesky-lyre-pod
+  type: ClusterIP
   ports:
-    - name: internal
+    - name: http
       port: 80
-      protocol: TCP
 ---
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: redirect-bluesky-lyre
-  namespace: default
-subsets: []
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
+# 4) Ingress tying it all together
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: redirect-bluesky-lyre
   namespace: default
   annotations:
-    #external-dns.alpha.kubernetes.io/target: bluesky.lyre.works # works but sets points to itself
+    cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
-  entryPoints:
-    - web
-    - websecure
-  routes:
-    - match: Host(`bluesky.lyre.works`)
-      kind: Rule
-      middlewares:
-        - name: redirect-bluesky-lyre
-      services:
-        - name: noop@internal
-          kind: TraefikService
+  ingressClassName: traefik
+  tls:
+  - hosts:
+    - bluesky.lyre.works
+    secretName: bluesky-lyre-works-tls
+  rules:
+  - host: "bluesky.lyre.works"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: redirect-bluesky-lyre
+            port:
+              number: 80
