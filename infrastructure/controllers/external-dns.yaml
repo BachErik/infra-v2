@@ -51,5 +51,8 @@ spec:
             - get
             - list
             - watch
+            - update
     extraArgs:
-    - --source=crd
+    - --source=service
+    - --source=ingress
+    - --source=crd 
