@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   endpoints:
-  - dnsName: example.com
+  - dnsName: bluesky.lyre.works
     recordType: A
 ---
 apiVersion: traefik.io/v1alpha1
