@@ -21,7 +21,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: redirect
+      chart: k8s-redirects
       version: "0.2.5"
       sourceRef:
         kind: HelmRepository
