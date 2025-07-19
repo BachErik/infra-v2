@@ -9,7 +9,7 @@ metadata:
   name: redirect
   namespace: redirect
 spec:
-  interval: 24h
+  interval: 1m
   url: https://bacherik.github.io/k8s-redirects/
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -18,7 +18,7 @@ metadata:
   name: redirect
   namespace: redirect
 spec:
-  interval: 30m
+  interval: 1m
   chart:
     spec:
       chart: k8s-redirects
