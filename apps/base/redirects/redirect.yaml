@@ -1,79 +1,68 @@
-# 1) Traefik Middleware for the bluesky redirect
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
 metadata:
-  name: redirect-bluesky-lyre
-  namespace: default
+  name: redirect
+  namespace: redirect
 spec:
-  redirectRegex:
-    regex: "^https?://bluesky\\.lyre\\.works(?:/(.*))?"
-    replacement: "https://bsky.app/profile/lyre.works/${1}"
-    permanent: true
+  interval: 24h
+  url: https://bacherik.github.io/k8s-redirects/
 ---
-# 2) Placeholder Deployment
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
-  name: redirect-bluesky-lyre
-  namespace: default
-  labels:
-    app: redirect-bluesky-lyre-pod
+  name: redirect
+  namespace: redirect
 spec:
-  selector:
-    matchLabels:
-      app: redirect-bluesky-lyre-pod
-  template:
-    metadata:
-      labels:
-        app: redirect-bluesky-lyre-pod
+  interval: 30m
+  chart:
     spec:
-      containers:
-        - name: redirect-bluesky-lyre-pod
-          image: traefik/whoami
-          ports:
-            - containerPort: 80
----
-# 3) Service for the Deployment
-apiVersion: v1
-kind: Service
-metadata:
-  name: redirect-bluesky-lyre
-  namespace: default
-spec:
-  selector:
-    app: redirect-bluesky-lyre-pod
-  type: ClusterIP
-  ports:
-    - name: http
-      port: 80
-  ipFamilyPolicy: SingleStack
-  ipFamilies:
-    - IPv4
----
-# 4) Ingress tying it all together
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: redirect-bluesky-lyre
-  namespace: default
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt"
-    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-bluesky-lyre@kubernetescrd
-spec:
-  ingressClassName: traefik
-  tls:
-  - hosts:
-    - bluesky.lyre.works
-    secretName: bluesky-lyre-works-tls
-  rules:
-  - host: "bluesky.lyre.works"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: redirect-bluesky-lyre
-            port:
-              number: 80
+      chart: redirect
+      version: "0.2.5"
+      sourceRef:
+        kind: HelmRepository
+        name: redirect
+        namespace: redirect
+      interval: 12h
+  values:
+    redirects:
+      - name: bluesky
+        host: bluesky.lyre.works
+        regex: "^https?://bluesky\\.lyre\\.works(?:/(.*))?"
+        replacement: "https://bsky.app/profile/lyre.works/"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: bsky
+        host: bsky.lyre.works
+        regex: "^https?://bsky\\.lyre\\.works(?:/(.*))?"
+        replacement: "https://bsky.app/profile/lyre.works/"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: github
+        host: github.lyre.works
+        regex: "^https?://github\\.lyre\\.works(?:/(.*))?"
+        replacement: "https://github.com/LyreWorks/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: gh
+        host: gh.lyre.works
+        regex: "^https?://gh\\.lyre\\.works(?:/(.*))?"
+        replacement: "https://github.com/LyreWorks/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: test
+        host: test.bacherik.de
+        regex: "^https?://test\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://example.com/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+        tlsSecretName: "test-tls"
