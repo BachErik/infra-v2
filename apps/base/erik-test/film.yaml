@@ -37,8 +37,8 @@ spec:
               value: |-
                 chunky
                 infinity-tnt
-                lucky-tnt-lib
-                lucky-tnt-mod
+                lucky-tnt-lib:ezvk3Z4l
+                lucky-tnt-mod:poxpbC0y
                 security-craft:9aseGMM0
                 tnt-breaks-bedrock
             - name: OPS
