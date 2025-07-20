@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mc3
+  name: film
   namespace: eriktest
 spec:
   accessModes:

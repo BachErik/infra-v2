@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mc3
+  name: film
   namespace: eriktest
   annotations:
-    mc-router.itzg.me/externalServerName: "1-21-5.bacherik.de"
-    external-dns.alpha.kubernetes.io/hostname: "1.21.5.bacherik.de"
+    mc-router.itzg.me/externalServerName: "film.bacherik.de"
+    external-dns.alpha.kubernetes.io/hostname: "film.bacherik.de"
 spec:
   selector:
-    app: mc3
+    app: film
   ports:
     - port: 25565
       targetPort: 25565

@@ -1,51 +1,53 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mc2
+  name: film
   namespace: eriktest
   labels:
-    app: mc2
+    app: film
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mc2
+      app: film
   template:
     metadata:
       labels:
-        app: mc2
+        app: film
     spec:
       containers:
-        - name: mc2
-          image: itzg/minecraft-server:java8
+        - name: film
+          image: itzg/minecraft-server:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 25565
           env:
             - name: EULA
               value: "TRUE"
-            - name: ONLINE_MODE
-              value: "FALSE"
+            - name: VERSION
+              value: "1.21"
             - name: TYPE
-              value: "CUSTOM"
-            - name: CUSTOM_SERVER
-              value: "https://file.bacherik.de/minecraft/versions/spigot-1.10.2.jar"
-            - name: FORCE_GAMEMODE
-              value: "TRUE"
-            - name: MODE
-              value: "CREATIVE"
+              value: "NEOFORGE"
             - name: ENABLE_COMMAND_BLOCK
-              value: "TRUE"
-            - name: "FORCE_REDOWNLOAD"
               value: "TRUE"
             - name: CREATE_CONSOLE_IN_PIPE
               value: "true"
+            - name: MODS
+              value: |-
+                chunky
+                infinity-tnt
+                lucky-tnt-lib
+                lucky-tnt-mod
+                security-craft
+                tnt-breaks-bedrock
             - name: OPS
               value: |-
                 BachErik_
+                BachCam
           volumeMounts:
-            - name: mc2
+            - name: film
               mountPath: /data
       volumes:
-        - name: mc2
+        - name: film
           persistentVolumeClaim:
-            claimName: mc2
+            claimName: film

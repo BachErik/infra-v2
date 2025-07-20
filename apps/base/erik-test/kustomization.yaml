@@ -6,12 +6,9 @@ resources:
   #- helm-repo.yaml
   #- helm-release.yaml
   - mc1-pvc.yaml
-  - mc2-pvc.yaml
-  - mc3-pvc.yaml
+  - film-pvc.yaml
   - mc1.yaml
-  - mc2.yaml
-  - mc3.yaml
+  - film.yaml
   - mc1-svc.yaml
-  - mc2-svc.yaml
-  - mc3-svc.yaml
+  - film-svc.yaml
   - ingress.yaml
