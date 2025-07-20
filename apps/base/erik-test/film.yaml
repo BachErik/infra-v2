@@ -33,7 +33,7 @@ spec:
               value: "TRUE"
             - name: CREATE_CONSOLE_IN_PIPE
               value: "true"
-            - name: MODS
+            - name: MODRINTH_PROJECTS
               value: |-
                 chunky
                 infinity-tnt
