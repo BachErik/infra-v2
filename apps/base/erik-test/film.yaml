@@ -39,7 +39,7 @@ spec:
                 infinity-tnt
                 lucky-tnt-lib
                 lucky-tnt-mod
-                security-craft
+                security-craft:9aseGMM0
                 tnt-breaks-bedrock
             - name: OPS
               value: |-
