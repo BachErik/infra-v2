@@ -48,7 +48,7 @@ spec:
                 BachErik_
                 BachCam
             - name: WORLD
-              value: https://workupload.com/start/KjbrA2Z3e5x
+              value: https://file.bacherik.de/world.zip
           volumeMounts:
             - name: film
               mountPath: /data
