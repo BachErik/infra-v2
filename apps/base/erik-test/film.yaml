@@ -15,6 +15,7 @@ spec:
       labels:
         app: film
     spec:
+      nodeName: main
       containers:
         - name: film
           image: itzg/minecraft-server:latest
