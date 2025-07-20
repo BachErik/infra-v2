@@ -42,6 +42,8 @@ spec:
                 lucky-tnt-mod:poxpbC0y
                 security-craft:9aseGMM0
                 tnt-breaks-bedrock
+                worldedit:WTAFvuRx
+                worldeditcui-forge:YrN5j3qw
             - name: OPS
               value: |-
                 BachErik_
