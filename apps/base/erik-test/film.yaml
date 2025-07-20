@@ -47,6 +47,8 @@ spec:
               value: |-
                 BachErik_
                 BachCam
+            - name: WORLD
+              value: https://workupload.com/start/KjbrA2Z3e5x
           volumeMounts:
             - name: film
               mountPath: /data
