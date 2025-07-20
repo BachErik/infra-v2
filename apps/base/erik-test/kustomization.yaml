@@ -5,10 +5,10 @@ resources:
   - mc-router.yaml
   #- helm-repo.yaml
   #- helm-release.yaml
-  - mc1-pvc.yaml
+  #- mc1-pvc.yaml
   - film-pvc.yaml
-  - mc1.yaml
+  #- mc1.yaml
   - film.yaml
-  - mc1-svc.yaml
+  #- mc1-svc.yaml
   - film-svc.yaml
   - ingress.yaml
