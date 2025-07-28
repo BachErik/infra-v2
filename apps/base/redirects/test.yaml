@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   redirectRegex:
-    regex: "^https?://bluesky\\.lyre\\.works(?:/(.*))?"
+    regex: "^https?://bluesky\\.bachflow\\.app(?:/(.*))?"
     replacement: "https://bsky.app/profile/lyre.works/${1}"
     permanent: true
 ---
@@ -64,10 +64,10 @@ spec:
   ingressClassName: traefik
   tls:
   - hosts:
-    - bluesky.lyre.works
+    - bluesky.bachflow.app
     secretName: bluesky-lyre-works-tls
   rules:
-  - host: "bluesky.lyre.works"
+  - host: "bluesky.bachflow.app"
     http:
       paths:
       - path: /
