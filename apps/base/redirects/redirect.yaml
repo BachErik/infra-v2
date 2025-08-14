@@ -30,7 +30,7 @@ spec:
       interval: 12h
   values:
     redirects:
-      - name: bluesky
+      - name: bluesky-lyreworks
         host: bluesky.lyre.works
         regex: "^https?://bluesky\\.lyre\\.works(?:/(.*))?"
         replacement: "https://bsky.app/profile/lyre.works/"
@@ -38,7 +38,7 @@ spec:
         image: traefik/whoami
         port: 80
         issuer: letsencrypt
-      - name: bsky
+      - name: bsky-lyreworks
         host: bsky.lyre.works
         regex: "^https?://bsky\\.lyre\\.works(?:/(.*))?"
         replacement: "https://bsky.app/profile/lyre.works/"
@@ -46,7 +46,7 @@ spec:
         image: traefik/whoami
         port: 80
         issuer: letsencrypt
-      - name: github
+      - name: github-lyreworks
         host: github.lyre.works
         regex: "^https?://github\\.lyre\\.works(?:/(.*))?"
         replacement: "https://github.com/LyreWorks/${1}"
@@ -54,7 +54,7 @@ spec:
         image: traefik/whoami
         port: 80
         issuer: letsencrypt
-      - name: gh
+      - name: gh-lyreworks
         host: gh.lyre.works
         regex: "^https?://gh\\.lyre\\.works(?:/(.*))?"
         replacement: "https://github.com/LyreWorks/${1}"
@@ -62,12 +62,275 @@ spec:
         image: traefik/whoami
         port: 80
         issuer: letsencrypt
-      - name: test
-        host: test.bacherik.de
-        regex: "^https?://test\\.bacherik\\.de(?:/(.*))?"
-        replacement: "https://example.com/${1}"
+      - name: bsky-kunamel
+        host: bsky.kunamel.app
+        regex: "^https?://bsky\\.kunamel\\.app(?:/(.*))?"
+        replacement: "https://bsky.app/profile/kunamel.app/"
         permanent: true
         image: traefik/whoami
         port: 80
         issuer: letsencrypt
-        tlsSecretName: "test-tls"
+      - name: bluesky-kunamel
+        host: bluesky.kunamel.app
+        regex: "^https?://bluesky\\.kunamel\\.app(?:/(.*))?"
+        replacement: "https://bsky.app/profile/kunamel.app/"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: gh-kunamel
+        host: gh.kunamel.app
+        regex: "^https?://gh\\.kunamel\\.app(?:/(.*))?"
+        replacement: "https://github.com/Kunamel/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: github-kunamel
+        host: github.kunamel.app
+        regex: "^https?://github\\.kunamel\\.app(?:/(.*))?"
+        replacement: "https://github.com/Kunamel/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: root-kunamel
+        host: kunamel.app
+        regex: "^https?://kunamel\\.app(?:/(.*))?"
+        replacement: "https://github.com/Kunamel/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: twitter-kunamel
+        host: twitter.kunamel.app
+        regex: "^https?://twitter\\.kunamel\\.app(?:/(.*))?"
+        replacement: "https://x.com/Kunamelapp/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: x-kunamel
+        host: x.kunamel.app
+        regex: "^https?://x\\.kunamel\\.app(?:/(.*))?"
+        replacement: "https://x.com/Kunamelapp/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: youtube-kunamel
+        host: youtube.kunamel.app
+        regex: "^https?://youtube\\.kunamel\\.app(?:/(.*))?"
+        replacement: "https://youtube.com/@Kunamel/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: yt-kunamel
+        host: yt.kunamel.app
+        regex: "^https?://yt\\.kunamel\\.app(?:/(.*))?"
+        replacement: "https://youtube.com/@Kunamel>/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: root-lyreworks
+        host: lyre.works
+        regex: "^https?://lyre\\.works(?:/(.*))?"
+        replacement: "https://github.com/LyreWorks/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: twitter-lyreworks
+        host: twitter.lyre.works
+        regex: "^https?://twitter\\.lyre\\.works(?:/(.*))?"
+        replacement: "https://x.com/LyreWorks/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: x-lyreworks
+        host: x.lyre.works
+        regex: "^https?://x\\.lyre\\.works(?:/(.*))?"
+        replacement: "https://x.com/LyreWorks/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: root-bachflow
+        host: bachflow.app
+        regex: "^https?://bachflow\\.app(?:/(.*))?"
+        replacement: "https://github.com/BachFlow/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: github-bachflow
+        host: github.bachflow.app
+        regex: "^https?://github\\.bachflow\\.app(?:/(.*))?"
+        replacement: "https://github.com/BachFlow/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: gh-bachflow
+        host: gh.bachflow.app
+        regex: "^https?://gh\\.bachflow\\.app(?:/(.*))?"
+        replacement: "https://github.com/BachFlow/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: discord-bacherik
+        host: discord.bacherik.de
+        regex: "^https?://discord\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://discord.gg/9K8hVWcjFW"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: dc-bacherik
+        host: dc.bacherik.de
+        regex: "^https?://dc\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://discord.gg/9K8hVWcjFW"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: yt-bacherik
+        host: yt.bacherik.de
+        regex: "^https?://yt\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://youtube.com/@BachErik_live/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: youtube-bacherik
+        host: youtube.bacherik.de
+        regex: "^https?://youtube\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://youtube.com/@BachErik_live>/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: twitch-bacherik
+        host: twitch.bacherik.de
+        regex: "^https?://twitch\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://twitch.tv/BachErik_live/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: tv-bacherik
+        host: tv.bacherik.de
+        regex: "^https?://tv\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://twitch.tv/BachErik_live/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: insta-bacherik
+        host: insta.bacherik.de
+        regex: "^https?://insta\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://instagram.com/bacherik_live/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: instagram-bacherik
+        host: instagram.bacherik.de
+        regex: "^https?://instagram\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://instagram.com/bacherik_live/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: twitter-bacherik
+        host: twitter.bacherik.de
+        regex: "^https?://twitter\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://x.com/BachErik_live/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: x-bacherik
+        host: x.bacherik.de
+        regex: "^https?://x\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://x.com/BachErik_live/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: mastodon-bacherik
+        host: mastodon.bacherik.de
+        regex: "^https?://mastodon\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://mastodon.social/@BachErik"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: bluesky-bacherik
+        host: bluesky.bacherik.de
+        regex: "^https?://bluesky\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://bsky.app/profile/bacherik.de/"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: bsky-bacherik
+        host: bsky.bacherik.de
+        regex: "^https?://bsky\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://bsky.app/profile/bacherik.de/"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: github-bacherik
+        host: github.bacherik.de
+        regex: "^https?://github\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://github.com/BachErik/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: gh-bacherik
+        host: gh.bacherik.de
+        regex: "^https?://gh\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://github.com/BachErik/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: stackoverflow-bacherik
+        host: stackoverflow.bacherik.de
+        regex: "^https?://stackoverflow\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://stackoverflow.com/users/22619207/bacherik"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: reddit-bacherik
+        host: reddit.bacherik.de
+        regex: "^https?://reddit\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://reddit.com/u/BachErik/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: gitlab-bacherik
+        host: gitlab.bacherik.de
+        regex: "^https?://gitlab\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://gitlab.com/BachErik/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
+      - name: threads-bacherik
+        host: threads.bacherik.de
+        regex: "^https?://threads\\.bacherik\\.de(?:/(.*))?"
+        replacement: "https://threads.com/BachErik_live/${1}"
+        permanent: true
+        image: traefik/whoami
+        port: 80
+        issuer: letsencrypt
