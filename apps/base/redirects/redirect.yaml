@@ -129,7 +129,7 @@ spec:
       - name: yt-kunamel
         host: yt.kunamel.app
         regex: "^https?://yt\\.kunamel\\.app(?:/(.*))?"
-        replacement: "https://youtube.com/@Kunamel>/${1}"
+        replacement: "https://youtube.com/@Kunamel/${1}"
         permanent: true
         image: traefik/whoami
         port: 80
@@ -209,7 +209,7 @@ spec:
       - name: youtube-bacherik
         host: youtube.bacherik.de
         regex: "^https?://youtube\\.bacherik\\.de(?:/(.*))?"
-        replacement: "https://youtube.com/@BachErik_live>/${1}"
+        replacement: "https://youtube.com/@BachErik_live/${1}"
         permanent: true
         image: traefik/whoami
         port: 80
