@@ -90,44 +90,44 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: { app: nginx-rtmp }
+    matchLabels:
+      app: nginx-rtmp
   template:
     metadata:
-      labels: { app: nginx-rtmp }
+      labels:
+        app: nginx-rtmp
     spec:
-      initContainers:
-        - name: init-nginx-conf
-          image: busybox:1.36
-          command: ["sh","-c","cp /config/nginx.conf /etc-nginx/nginx.conf"]
-          volumeMounts:
-            - name: conf
-              mountPath: /config/nginx.conf
-              subPath: nginx.conf
-            - name: etc-nginx
-              mountPath: /etc-nginx
-          securityContext:
-            runAsUser: 0
       containers:
         - name: nginx-rtmp
           image: alfg/nginx-rtmp:latest
+          # Wichtig: Eigene Config verwenden, nicht /etc/nginx/nginx.conf
+          command: ["nginx"]
+          args: ["-g","daemon off;","-c","/config/nginx.conf"]
           ports:
-            - { name: rtmp, containerPort: 1935, protocol: TCP }
-            - { name: http, containerPort: 8080, protocol: TCP }
+            - name: rtmp
+              containerPort: 1935
+              protocol: TCP
+            - name: http
+              containerPort: 8080
+              protocol: TCP
           volumeMounts:
-            - name: etc-nginx
-              mountPath: /etc/nginx
+            # Mount NUR die Datei als /config/nginx.conf (read-only ist ok)
+            - name: conf
+              mountPath: /config/nginx.conf
+              subPath: nginx.conf
+            # Aufnahmen/HLS landen hier
             - name: data
               mountPath: /var/www
-          resources:
-            requests: { cpu: 50m, memory: 128Mi }
-            limits:   { cpu: "1",  memory: 6Gi }
+          # Für PVC-Schreibrechte pragmatisch als root starten (kannst du später härten)
+          securityContext:
+            runAsUser: 0
       volumes:
         - name: conf
-          configMap: { name: nginx-rtmp-conf }
-        - name: etc-nginx
-          emptyDir: {}
+          configMap:
+            name: nginx-rtmp-conf
         - name: data
-          persistentVolumeClaim: { claimName: rtmp-storage }
+          persistentVolumeClaim:
+            claimName: rtmp-storage
 ---
 # Interner Service (RTMP + HTTP)
 apiVersion: v1
