@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - rtmp
   routes:
-    - match: HostSNI(`rtmp.bacherik.de`)
+    - match: HostSNI(`cast.bacherik.de/live`)
       services:
         - name: owncast
           port: 1935
