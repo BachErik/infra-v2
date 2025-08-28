@@ -18,6 +18,7 @@ resources:
   - ../base/points
   - ../base/n8n
   - ../base/redirects
+  - ../base/owncast
   #- ../base/shlink
 #  - ../base/open-webui
 #  - ../base/weblate
