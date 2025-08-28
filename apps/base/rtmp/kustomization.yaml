@@ -3,6 +3,4 @@ kind: Kustomization
 namespace: rtmp
 resources:
   - namespace.yaml
-  - configmap.yaml
   - deployment.yaml
-  - service.yaml
