@@ -1,10 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: owncast
+namespace: rtmp
 resources:
   - namespace.yaml
-  - pvc.yaml
+  - configmap.yaml
   - deployment.yaml
   - service.yaml
-  - ingress.yaml
-  - irtcp.yaml
