@@ -21,4 +21,4 @@ spec:
           service:
             name: stirling-pdf-stirling-pdf-chart
             port:
-              number: 80
+              number: 8080
