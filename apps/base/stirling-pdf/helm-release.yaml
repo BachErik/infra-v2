@@ -15,11 +15,11 @@ spec:
         namespace: stirling-pdf
   values:
     ingress:
-        enabled: true
-        ingressClassName: traefik
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt"
-        tls: true
-        tlsSecret: pdf-tls
-        hosts:
-          - pdf.bacherik.de
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+      tls: true
+      tlsSecret: pdf-tls
+      hosts:
+        - pdf.bacherik.de
