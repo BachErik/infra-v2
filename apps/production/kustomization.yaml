@@ -17,7 +17,7 @@ resources:
   - ../base/reposilite
   - ../base/points
   - ../base/n8n
-  #- ../base/redirects
+  - ../base/redirects
   - ../base/rtmp
   #- ../base/shlink
 #  - ../base/open-webui
