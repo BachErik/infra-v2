@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: checkmk-kube-agent
-  namespace: flux-system
+  namespace: checkmk-kube-agent
 spec:
   url: https://checkmk.github.io/checkmk_kube_agent
 ---
@@ -10,7 +10,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: checkmk-collectors
-  namespace: checkmk
+  namespace: checkmk-kube-agent
 spec:
   interval: 30m
   chart:
@@ -19,7 +19,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: checkmk-kube-agent
-        namespace: flux-system
+        namespace: checkmk-kube-agent
       version: "1.7.0"
   valuesFrom:
     - kind: ConfigMap
