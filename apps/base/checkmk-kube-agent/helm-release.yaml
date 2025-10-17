@@ -21,7 +21,73 @@ spec:
         name: checkmk-kube-agent
         namespace: checkmk-kube-agent
       version: "1.7.0"
-  valuesFrom:
-    - kind: ConfigMap
-      name: checkmk-collectors-values
-      valuesKey: values.yaml
+  values:
+    clusterCollector:
+      service:
+        type: ClusterIP
+        port: 8080
+
+      # Ingress ONLY if you want to make the Collector externally accessible (usually unnecessary).
+      ingress:
+        enabled: false
+        className: traefik
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        hosts:
+          - host: kube-collector.bacherik.de   # <- ggf. anpassen
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: kube-collector-tls
+            hosts:
+              - kube-collector.bacherik.de
+
+    # Enable HTTPS between node and cluster collector (optional).
+    # HTTP is sufficient for pure in-cluster communication; if enabled: enter key/cert/CA.
+    tlsCommunication:
+      enabled: false
+      verifySsl: true
+      # clusterCollectorKey: |-
+      #   -----BEGIN EC PRIVATE KEY-----
+      #   ...
+      #   -----END EC PRIVATE KEY-----
+      # clusterCollectorCert: |-
+      #   -----BEGIN CERTIFICATE-----
+      #   ...
+      #   -----END CERTIFICATE-----
+      # checkmkCaCert: |-
+      #   -----BEGIN CERTIFICATE-----
+      #   ...
+      #   -----END CERTIFICATE-----
+
+    # PSP/NetworkPolicy – disabled by default (modern K8s without PSP).
+    rbac:
+      pspEnabled: false
+
+    networkPolicy:
+      enabled: false
+      # If you use NetworkPolicies, you must specify the permitted source networks here
+      # (e.g., IP CIDR of your Checkmk server or MetalLB speaker).
+      allowIngressFromCIDRs: []
+      # The collector needs egress to the API server – lookup is convenient by default.
+      egressKubeApiserver:
+        enableCidrLookup: true
+        # ipBlockCidr: "10.0.0.1/32"
+        # port: 6443
+        # labelSelectors:
+        #   namespace: kube-system
+        #   key: app
+        #   value: kube-apiserver
+
+    # GKE Autopilot only requires this toggle (do not change anything else).
+    volumeMountPermissions:
+      var_run:
+        readOnly: false
+
+    # Optional tuning for nodeCollector/cAdvisor (e.g., workaround memory map issues).
+    nodeCollector:
+      cadvisor:
+        enabled: true
+        # additionalArgs:
+        #   - --disable_metrics=memory
