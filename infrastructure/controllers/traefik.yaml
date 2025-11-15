@@ -29,13 +29,13 @@ spec:
         namespace: traefik
       interval: 12h
   values:
-    ports:
-      minecraft:
-        port: 25565
-        expose:
-          default: true
-        exposedPort: 25565
-        protocol: TCP
+    #ports:
+    #  minecraft:
+    #    port: 25565
+    #    expose:
+    #      default: true
+    #    exposedPort: 25565
+    #    protocol: TCP
     deployment:
       replicas: null
     resources:
