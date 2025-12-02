@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: stirlingpdf
-  namespace: stirlingpdf
+  name: stirling-pdf
+  namespace: stirling-pdf
 spec:
   interval: 5m
   chart:
@@ -11,8 +11,8 @@ spec:
       version: "2.2.0"
       sourceRef:
         kind: HelmRepository
-        name: stirlingpdf
-        namespace: stirlingpdf
+        name: stirling-pdf
+        namespace: stirling-pdf
   values:
     ingress:
       enabled: true
@@ -20,7 +20,7 @@ spec:
         - host: stirlingpdf.bacherik.de
           path: /
           tls: true
-          tlsSecretName: stirlingpdf-tls
+          tlsSecretName: stirling-pdf-tls
       ingressClassName: traefik
     annotations:
       - cert-manager.io/cluster-issuer: "letsencrypt"

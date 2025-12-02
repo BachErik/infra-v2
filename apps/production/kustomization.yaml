@@ -20,7 +20,7 @@ resources:
   - ../base/redirects
   - ../base/rtmp
   - ../base/checkmk-kube-agent
-  - ../base/stirlingpdf
+  - ../base/stirling-pdf
   #- ../base/shlink
 #  - ../base/open-webui
 #  - ../base/weblate
