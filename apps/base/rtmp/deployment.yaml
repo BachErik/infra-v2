@@ -2,181 +2,54 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: rtmp
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: rtmp-storage
-  namespace: rtmp
-spec:
-  accessModes: ["ReadWriteOnce"]
-  resources:
-    requests:
-      storage: 100Gi
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: nginx-rtmp-conf
-  namespace: rtmp
-data:
-  nginx.conf: |
-    worker_processes  auto;
-    events { worker_connections 1024; }
 
-    rtmp {
-      server {
-        listen 1935;
-        chunk_size 4096;
-        allow publish all;
-
-        application live {
-          live on;
-
-          # --- DVR: Aufnahme ---
-          record all;
-          record_path /var/www/vod;
-          record_unique on;
-
-          # Nach Ende der Aufnahme automatisch nach MP4 remuxen:
-          # (ffmpeg ist im alfg-Image vorhanden)
-          exec_record_done /usr/local/bin/ffmpeg -y -i $path -c copy -movflags +faststart $dirname/$basename.mp4 && rm -f $path;
-
-          # --- Live-HLS für Browser/VLC ---
-          hls on;
-          hls_path /var/www/hls;
-          hls_nested on;
-          hls_fragment 3s;
-          hls_playlist_length 60s;
-
-          # Für "DVR-ähnlich" (alte Segmente NICHT löschen):
-          hls_cleanup off;
-        }
-      }
-    }
-
-    http {
-      server {
-        listen 8080;
-
-        # Live-HLS: /hls/<app>/<key>.m3u8 => /hls/live/<key>.m3u8
-        root /var/www;
-
-        location /hls {
-          types {
-            application/vnd.apple.mpegurl m3u8;
-            video/mp2t ts;
-          }
-          add_header Cache-Control no-cache;
-        }
-
-        # VOD: einfache Dateiliste + Direktdownload/Playback von MP4
-        location /vod/ {
-          alias /var/www/vod/;
-          autoindex on;
-        }
-
-        # Health
-        location = / {
-          return 200 'ok\n';
-        }
-      }
-    }
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-rtmp
+  name: rtmp-server
   namespace: rtmp
+  labels:
+    app: rtmp-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-rtmp
+      app: rtmp-server
   template:
     metadata:
       labels:
-        app: nginx-rtmp
+        app: rtmp-server
     spec:
       containers:
-        - name: nginx-rtmp
+        - name: rtmp-server
           image: alfg/nginx-rtmp:latest
-          # Wichtig: Eigene Config verwenden, nicht /etc/nginx/nginx.conf
-          command: ["nginx"]
-          args: ["-g","daemon off;","-c","/config/nginx.conf"]
+          imagePullPolicy: IfNotPresent
           ports:
-            - name: rtmp
-              containerPort: 1935
-              protocol: TCP
-            - name: http
-              containerPort: 8080
-              protocol: TCP
-          volumeMounts:
-            # Mount NUR die Datei als /config/nginx.conf (read-only ist ok)
-            - name: conf
-              mountPath: /config/nginx.conf
-              subPath: nginx.conf
-            # Aufnahmen/HLS landen hier
-            - name: data
-              mountPath: /var/www
-          # Für PVC-Schreibrechte pragmatisch als root starten (kannst du später härten)
-          securityContext:
-            runAsUser: 0
-      volumes:
-        - name: conf
-          configMap:
-            name: nginx-rtmp-conf
-        - name: data
-          persistentVolumeClaim:
-            claimName: rtmp-storage
+            - containerPort: 1935
+              name: rtmp
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
 ---
-# Interner Service (RTMP + HTTP)
 apiVersion: v1
 kind: Service
 metadata:
-  name: rtmp
+  name: rtmp-server
   namespace: rtmp
+  labels:
+    app: rtmp-server
 spec:
-  selector: { app: nginx-rtmp }
+  type: ClusterIP
+  selector:
+    app: rtmp-server
   ports:
-    - { name: rtmp, port: 1935, targetPort: 1935, protocol: TCP }
-    - { name: http, port: 8080, targetPort: 8080, protocol: TCP }
----
-# Traefik: RTMP via TCP (EntryPoint :1935 erforderlich)
-apiVersion: traefik.io/v1alpha1
-kind: IngressRouteTCP
-metadata:
-  name: rtmp
-  namespace: rtmp
-spec:
-  entryPoints: [ rtmp ]
-  routes:
-    - match: "HostSNI(`*`)"
-      services:
-        - name: rtmp
-          port: 1935
----
-# Traefik: HTTP-Ingress für VOD/HLS-Web-Zugriff
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: vod
-  namespace: rtmp
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-spec:
-  ingressClassName: traefik
-  rules:
-    - host: vod.bacherik.de
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: rtmp
-                port:
-                  number: 8080
-  tls:
-    - hosts: [ vod.bacherik.de ]
-      secretName: vod-tls
+    - name: rtmp
+      port: 1935
+      targetPort: 1935
+      protocol: TCP
