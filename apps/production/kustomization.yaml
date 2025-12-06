@@ -19,6 +19,7 @@ resources:
   - ../base/n8n
   - ../base/redirects
   - ../base/rtmp
+  - ../base/live-video
   - ../base/checkmk-kube-agent
   #- ../base/stirlingpdf
   #- ../base/shlink
