@@ -10,7 +10,6 @@ metadata:
   namespace: live-video
 data:
   srs.conf: |-
-    # Very simple RTMP ingest + HLS output config for SRS inside a container.
     listen              1935;
     max_connections     1000;
     daemon              off;
@@ -18,14 +17,12 @@ data:
     pid                 ./objs/srs.pid;
     srs_log_tank        console;
 
-    # HTTP server for serving HLS and basic status pages
     http_server {
         enabled         on;
         listen          8080;
         dir             ./objs/nginx/html;
     }
 
-    # Optional HTTP API (nice for debugging / monitoring)
     http_api {
         enabled         on;
         listen          1985;
@@ -33,32 +30,30 @@ data:
     }
 
     vhost __defaultVhost__ {
-        # This is the "app" name; OBS URL will be .../live/STREAM_KEY
-        # You don’t really have to configure "live" explicitly; default vhost is enough.
-
-        # Reasonable defaults; not ultra LL, but fine for 1080p30 casual use.
+        # Global low-latency flags
         tcp_nodelay     on;
         min_latency     on;
 
-        play {
-            # Caching GOPs improves join speed & stability.
-            gop_cache       on;
-            queue_length    20;
-            mw_latency      200;
-        }
-
+        # Publishing side
         publish {
-            mr              off;
+            mr              off;      # no merged-read
+            # (mr_latency etc. can stay default)
         }
 
-        # HLS for browser / VLC (HTTP)
-        hls {
-            enabled         on;
-            hls_path        ./objs/nginx/html;
-            # 2s segments, ~6s window → ~6–10s latency in practice
-            hls_fragment    2;
-            hls_window      6;
+        # Playback side – tuned for low latency
+        play {
+            gop_cache       off;      # important: disable GOP cache for lower latency :contentReference[oaicite:4]{index=4}
+            queue_length    5;        # seconds of live queue
+            mw_latency      50;       # ms merged-write (lower = lower latency, more syscalls)
         }
+
+        # HTTP-FLV output for VLC + browser (flv.js)
+        http_remux {
+            enabled         on;
+            mount           [vhost]/[app]/[stream].flv;
+        }
+
+        # (No HLS here – that’s the high-latency part we drop)
     }
 ---
 apiVersion: apps/v1
