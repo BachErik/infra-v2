@@ -61,6 +61,8 @@ kind: Deployment
 metadata:
   name: srs
   namespace: live-video
+  annotations:
+    reloader.stakater.com/auto: "true"
   labels:
     app: srs
 spec:
