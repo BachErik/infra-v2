@@ -25,7 +25,7 @@ data:
         play {
             # Stick close to SRS "realtime" template values.
             gop_cache       off;
-            queue_length    10;   # seconds max in queue
+            queue_length    2;   # seconds max in queue
             mw_latency      100;  # ms merge-write
         }
 
