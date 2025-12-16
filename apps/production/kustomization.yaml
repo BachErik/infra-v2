@@ -14,7 +14,7 @@ resources:
   - ../base/kube-prometheus-stack
   - ../base/gatus
   #- ../base/erik-test
-  #- ../base/reposilite
+  - ../base/reposilite
   - ../base/points
   - ../base/n8n
   - ../base/redirects
