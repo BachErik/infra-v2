@@ -63,6 +63,22 @@ spec:
           hosts:
             - zitadel.bacherik.de
 
+    login:
+      ingress:
+        enabled: true
+        className: traefik
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+        hosts:
+          - host: zitadel.bacherik.de
+            paths:
+              - path: /ui/v2/login
+                pathType: Prefix
+        tls:
+          - secretName: zitadel-tls
+            hosts:
+              - zitadel.bacherik.de
+
     podDisruptionBudget:
       enabled: true
       minAvailable: 1
