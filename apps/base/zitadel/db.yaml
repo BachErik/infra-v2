@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: zitadel-db
+  namespace: zitadel
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: postgresql
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+        version: "18.2.4"
+  values:
+    architecture: standalone
+
+    auth:
+      username: zitadel
+      database: zitadel
+      existingSecret: zitadel-postgres-auth
+      secretKeys:
+        adminPasswordKey: postgresPassword
+        userPasswordKey: userPassword
+
+    primary:
+      persistence:
+        enabled: true
+        size: 10Gi
