@@ -33,11 +33,11 @@ spec:
             User:
               Username: "zitadel"
               SSL:
-                Mode: "require"
+                Mode: "disabled"
             Admin:
               Username: "postgres"
               SSL:
-                Mode: "require"
+                Mode: "disabled"
         FirstInstance:
           Org:
             Human:
