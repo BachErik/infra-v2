@@ -44,7 +44,7 @@ spec:
               UserName: "admin"
               FirstName: "Zitadel"
               LastName: "Admin"
-              Email: "bacherik.info@gmail.com"
+              Email: "admin@example.com"
               Password: "YourSecurePassword123!"
               PasswordChangeRequired: true
 
