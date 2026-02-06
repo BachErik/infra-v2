@@ -1,30 +1,180 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: zitadel-db
+  name: zitadel-db-init
+  namespace: zitadel
+data:
+  01-init-zitadel.sh: |
+    #!/bin/bash
+    set -euo pipefail
+
+    echo "Init: create role/db for ZITADEL (only on first init of PGDATA)"
+    psql -v ON_ERROR_STOP=1 --username "postgres" <<EOSQL
+    DO \$\$
+    BEGIN
+      IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'zitadel') THEN
+        CREATE ROLE zitadel LOGIN PASSWORD '${ZITADEL_USER_PASSWORD}';
+      END IF;
+    END
+    \$\$;
+
+    DO \$\$
+    BEGIN
+      IF NOT EXISTS (SELECT FROM pg_database WHERE datname = 'zitadel') THEN
+        CREATE DATABASE zitadel OWNER zitadel;
+      END IF;
+    END
+    \$\$;
+
+    GRANT ALL PRIVILEGES ON DATABASE zitadel TO zitadel;
+    EOSQL
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zitadel-db-postgresql-headless
+  namespace: zitadel
+labels:
+  app: zitadel-db-postgresql
+spec:
+  clusterIP: None
+  selector:
+    app: zitadel-db-postgresql
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: postgres
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zitadel-db-postgresql
+  namespace: zitadel
+labels:
+  app: zitadel-db-postgresql
+spec:
+  type: ClusterIP
+  selector:
+    app: zitadel-db-postgresql
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: postgres
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: zitadel-db-postgresql
   namespace: zitadel
 spec:
-  interval: 30m
-  chart:
+  replicas: 1
+  serviceName: zitadel-db-postgresql-headless
+  selector:
+    matchLabels:
+      app: zitadel-db-postgresql
+  template:
+    metadata:
+      labels:
+        app: zitadel-db-postgresql
     spec:
-      chart: postgresql
-      version: "18.2.4"
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: zitadel
-  values:
-    architecture: standalone
-    image.tag: 17
-    auth:
-      username: zitadel
-      database: zitadel
-      existingSecret: zitadel-db-credentials
-      secretKeys:
-        adminPasswordKey: postgresPassword
-        userPasswordKey: userPassword
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        fsGroup: 999
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile:
+          type: RuntimeDefault
 
-    primary:
-      persistence:
-        enabled: true
-        size: 10Gi
+      initContainers:
+        - name: init-pgdata
+          image: busybox:1.36
+          command: ["sh", "-c", "mkdir -p /var/lib/postgresql/data/pgdata"]
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+
+      containers:
+        - name: postgres
+          image: postgres:17
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: postgres
+              containerPort: 5432
+
+          env:
+            # Set postgres superuser password
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: zitadel-db-credentials
+                  key: postgresPassword
+
+            # Used by init script to create role "zitadel"
+            - name: ZITADEL_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: zitadel-db-credentials
+                  key: userPassword
+
+            # Put actual PGDATA inside the mounted volume
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d
+
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "pg_isready -U postgres"]
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+
+          livenessProbe:
+            exec:
+              command: ["sh", "-c", "pg_isready -U postgres"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 999
+            runAsGroup: 999
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+
+      volumes:
+        - name: init
+          configMap:
+            name: zitadel-db-init
+            defaultMode: 0444
+
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
