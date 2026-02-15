@@ -15,7 +15,7 @@ resources:
   - ../base/gatus
   #- ../base/erik-test
   - ../base/reposilite
-  - ../base/points
+  #- ../base/points
   - ../base/n8n
   - ../base/redirects
   - ../base/rtmp
