@@ -17,14 +17,18 @@
     "BachErik"
   ],
   "rebaseWhen": "conflicted",
-  "recreateClosed": false,
+  "recreateWhen": "auto",
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2,
   "pinDigests": false,
   "schedule": [
     "after 2am and before 5am"
   ],
-  "ignorePaths": ["**/*.sops.*", "**/.terraform/**", "**/vendor/**"],
+  "ignorePaths": [
+    "**/*.sops.*",
+    "**/.terraform/**",
+    "**/vendor/**"
+  ],
   "flux": {
     "managerFilePatterns": [
       "/(^|/)(clusters|apps|infrastructure)/.*\\.ya?ml$/"
