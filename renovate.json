@@ -4,9 +4,7 @@
   "extends": [
     "config:recommended",
     ":dependencyDashboard",
-    ":semanticCommits",
-    "helpers:pinGitHubActionDigests",
-    "docker:pinDigests"
+    ":semanticCommits"
   ],
   "labels": [
     "dependencies",
@@ -19,11 +17,14 @@
     "BachErik"
   ],
   "rebaseWhen": "conflicted",
+  "recreateClosed": false,
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2,
+  "pinDigests": false,
   "schedule": [
     "after 2am and before 5am"
   ],
+  "ignorePaths": ["**/*.sops.*", "**/.terraform/**", "**/vendor/**"],
   "flux": {
     "managerFilePatterns": [
       "/(^|/)(clusters|apps|infrastructure)/.*\\.ya?ml$/"
