@@ -19,7 +19,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: checkmk
-          image: docker.io/checkmk/check-mk-raw:2.4.0-2025.10.17
+          image: docker.io/checkmk/check-mk-raw:2.5.0-2025.10.17
           imagePullPolicy: IfNotPresent
           env:
             - name: CMK_SITE_ID
