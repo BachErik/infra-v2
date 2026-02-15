@@ -9,7 +9,6 @@ resources:
   - ../base/glance
   - ../base/haste-server
   - ../base/killedby
-  # - ../base/k8s-dashboard is archived
   - ../base/weave-gitops
   - ../base/kube-prometheus-stack
   - ../base/gatus
