@@ -1,0 +1,80 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "timezone": "Europe/Berlin",
+
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    "helpers:pinGitHubActionDigests",
+    "docker:pinDigests"
+  ],
+
+  "labels": ["dependencies", "renovate"],
+  "assignees": ["BachErik"],
+  "reviewers": ["BachErik"],
+
+  "rebaseWhen": "conflicted",
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+
+  "schedule": ["after 2am and before 5am"],
+
+  "flux": {
+    "fileMatch": ["(^|/)(clusters|apps|infrastructure)/.*\\.ya?ml$"]
+  },
+
+  "kubernetes": {
+    "fileMatch": ["(^|/)(clusters|apps|infrastructure)/.*\\.ya?ml$"],
+    "ignorePaths": [
+      "**/clusters/**/flux-system/gotk-components.y*ml",
+      "**/clusters/**/flux-system/gotk-sync.y*ml"
+    ]
+  },
+
+  "helm-values": {
+    "fileMatch": ["(^|/).*values\\.ya?ml$"]
+  },
+
+  "regexManagers": [
+    {
+      "description": "Optional: bump K3s version strings if you store them in manifests (e.g. system-upgrade-controller Plans)",
+      "fileMatch": ["(^|/)(clusters|apps|infrastructure)/.*\\.ya?ml$"],
+      "matchStrings": [
+        "INSTALL_K3S_VERSION:\\s*\"?(?<currentValue>v\\d+\\.\\d+\\.\\d+\\+k3s\\d+)\"?",
+        "K3S_VERSION:\\s*\"?(?<currentValue>v\\d+\\.\\d+\\.\\d+\\+k3s\\d+)\"?",
+        "k3s_version:\\s*\"?(?<currentValue>v\\d+\\.\\d+\\.\\d+\\+k3s\\d+)\"?"
+      ],
+      "datasourceTemplate": "github-releases",
+      "packageNameTemplate": "k3s-io/k3s",
+      "depNameTemplate": "k3s"
+    }
+  ],
+
+  "packageRules": [
+    {
+      "matchManagers": ["flux"],
+      "groupName": "Flux system components"
+    },
+
+    {
+      "matchDatasources": ["helm"],
+      "groupName": "Helm chart updates",
+      "separateMajorMinor": true
+    },
+
+    {
+      "matchDatasources": ["docker"],
+      "matchManagers": ["kubernetes", "helm-values"],
+      "groupName": "K8s container images",
+      "separateMajorMinor": true
+    },
+
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
+  ]
+}
