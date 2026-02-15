@@ -22,7 +22,7 @@ resources:
   - ../base/live-video
   - ../base/checkmk-kube-agent
   - ../base/zitadel
-  - ../base/stirlingpdf
+  #- ../base/stirlingpdf
   #- ../base/shlink
 #  - ../base/open-webui
 #  - ../base/weblate
