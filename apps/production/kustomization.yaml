@@ -10,7 +10,7 @@ resources:
   - ../base/haste-server
   - ../base/killedby
   - ../base/weave-gitops
-  - ../base/kube-prometheus-stack
+  #- ../base/kube-prometheus-stack
   - ../base/gatus
   #- ../base/erik-test
   - ../base/reposilite
