@@ -19,7 +19,6 @@ resources:
   - ../base/redirects
   - ../base/rtmp
   - ../base/live-video
-  - ../base/checkmk-kube-agent
   - ../base/zitadel
   #- ../base/stirlingpdf
   #- ../base/shlink
