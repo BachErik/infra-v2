@@ -35,7 +35,7 @@ spec:
         regex: "^https?://bluesky\\.lyre\\.works(?:/(.*))?"
         replacement: "https://bsky.app/profile/lyre.works/"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: bsky-lyreworks
@@ -43,7 +43,7 @@ spec:
         regex: "^https?://bsky\\.lyre\\.works(?:/(.*))?"
         replacement: "https://bsky.app/profile/lyre.works/"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: github-lyreworks
@@ -51,7 +51,7 @@ spec:
         regex: "^https?://github\\.lyre\\.works(?:/(.*))?"
         replacement: "https://github.com/LyreWorks/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: gh-lyreworks
@@ -59,7 +59,7 @@ spec:
         regex: "^https?://gh\\.lyre\\.works(?:/(.*))?"
         replacement: "https://github.com/LyreWorks/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: bsky-kunamel
@@ -67,7 +67,7 @@ spec:
         regex: "^https?://bsky\\.kunamel\\.app(?:/(.*))?"
         replacement: "https://bsky.app/profile/kunamel.app/"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: bluesky-kunamel
@@ -75,7 +75,7 @@ spec:
         regex: "^https?://bluesky\\.kunamel\\.app(?:/(.*))?"
         replacement: "https://bsky.app/profile/kunamel.app/"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: gh-kunamel
@@ -83,7 +83,7 @@ spec:
         regex: "^https?://gh\\.kunamel\\.app(?:/(.*))?"
         replacement: "https://github.com/Kunamel/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: github-kunamel
@@ -91,7 +91,7 @@ spec:
         regex: "^https?://github\\.kunamel\\.app(?:/(.*))?"
         replacement: "https://github.com/Kunamel/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: root-kunamel
@@ -99,7 +99,7 @@ spec:
         regex: "^https?://kunamel\\.app(?:/(.*))?"
         replacement: "https://github.com/Kunamel/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: twitter-kunamel
@@ -107,7 +107,7 @@ spec:
         regex: "^https?://twitter\\.kunamel\\.app(?:/(.*))?"
         replacement: "https://x.com/Kunamelapp/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: x-kunamel
@@ -115,7 +115,7 @@ spec:
         regex: "^https?://x\\.kunamel\\.app(?:/(.*))?"
         replacement: "https://x.com/Kunamelapp/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: youtube-kunamel
@@ -123,7 +123,7 @@ spec:
         regex: "^https?://youtube\\.kunamel\\.app(?:/(.*))?"
         replacement: "https://youtube.com/@Kunamel/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: yt-kunamel
@@ -131,7 +131,7 @@ spec:
         regex: "^https?://yt\\.kunamel\\.app(?:/(.*))?"
         replacement: "https://youtube.com/@Kunamel/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: root-lyreworks
@@ -139,7 +139,7 @@ spec:
         regex: "^https?://lyre\\.works(?:/(.*))?"
         replacement: "https://github.com/LyreWorks/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: twitter-lyreworks
@@ -147,7 +147,7 @@ spec:
         regex: "^https?://twitter\\.lyre\\.works(?:/(.*))?"
         replacement: "https://x.com/LyreWorks/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: x-lyreworks
@@ -155,7 +155,7 @@ spec:
         regex: "^https?://x\\.lyre\\.works(?:/(.*))?"
         replacement: "https://x.com/LyreWorks/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: root-bachflow
@@ -163,7 +163,7 @@ spec:
         regex: "^https?://bachflow\\.app(?:/(.*))?"
         replacement: "https://github.com/BachFlow/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: github-bachflow
@@ -171,7 +171,7 @@ spec:
         regex: "^https?://github\\.bachflow\\.app(?:/(.*))?"
         replacement: "https://github.com/BachFlow/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: gh-bachflow
@@ -179,7 +179,7 @@ spec:
         regex: "^https?://gh\\.bachflow\\.app(?:/(.*))?"
         replacement: "https://github.com/BachFlow/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: discord-bacherik
@@ -187,7 +187,7 @@ spec:
         regex: "^https?://discord\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://discord.gg/9K8hVWcjFW"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: dc-bacherik
@@ -195,7 +195,7 @@ spec:
         regex: "^https?://dc\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://discord.gg/9K8hVWcjFW"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: yt-bacherik
@@ -203,7 +203,7 @@ spec:
         regex: "^https?://yt\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://youtube.com/@BachErik_live/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: youtube-bacherik
@@ -211,7 +211,7 @@ spec:
         regex: "^https?://youtube\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://youtube.com/@BachErik_live/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: twitch-bacherik
@@ -219,7 +219,7 @@ spec:
         regex: "^https?://twitch\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://twitch.tv/BachErik_live/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: tv-bacherik
@@ -227,7 +227,7 @@ spec:
         regex: "^https?://tv\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://twitch.tv/BachErik_live/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: insta-bacherik
@@ -235,7 +235,7 @@ spec:
         regex: "^https?://insta\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://instagram.com/bacherik_live/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: instagram-bacherik
@@ -243,7 +243,7 @@ spec:
         regex: "^https?://instagram\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://instagram.com/bacherik_live/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: twitter-bacherik
@@ -251,7 +251,7 @@ spec:
         regex: "^https?://twitter\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://x.com/BachErik_live/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: x-bacherik
@@ -259,7 +259,7 @@ spec:
         regex: "^https?://x\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://x.com/BachErik_live/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: mastodon-bacherik
@@ -267,7 +267,7 @@ spec:
         regex: "^https?://mastodon\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://mastodon.social/@BachErik"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: bluesky-bacherik
@@ -275,7 +275,7 @@ spec:
         regex: "^https?://bluesky\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://bsky.app/profile/bacherik.de/"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: bsky-bacherik
@@ -283,7 +283,7 @@ spec:
         regex: "^https?://bsky\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://bsky.app/profile/bacherik.de/"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: github-bacherik
@@ -291,7 +291,7 @@ spec:
         regex: "^https?://github\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://github.com/BachErik/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: gh-bacherik
@@ -299,7 +299,7 @@ spec:
         regex: "^https?://gh\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://github.com/BachErik/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: stackoverflow-bacherik
@@ -307,7 +307,7 @@ spec:
         regex: "^https?://stackoverflow\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://stackoverflow.com/users/22619207/bacherik"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: reddit-bacherik
@@ -315,7 +315,7 @@ spec:
         regex: "^https?://reddit\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://reddit.com/u/BachErik/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: gitlab-bacherik
@@ -323,7 +323,7 @@ spec:
         regex: "^https?://gitlab\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://gitlab.com/BachErik/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
       - name: threads-bacherik
@@ -331,6 +331,6 @@ spec:
         regex: "^https?://threads\\.bacherik\\.de(?:/(.*))?"
         replacement: "https://threads.com/BachErik_live/${1}"
         permanent: true
-        image: traefik/whoami
+        image: traefik/whoami@sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab
         port: 80
         issuer: letsencrypt
