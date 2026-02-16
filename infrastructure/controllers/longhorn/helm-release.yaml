@@ -13,3 +13,8 @@ spec:
         kind: HelmRepository
         name: longhorn
         namespace: longhorn-system
+  values:
+    defaultBackupStore:
+      backupTarget: "s3://k3s-longhorn@auto/longhorn/"
+      backupTargetCredentialSecret: "longhorn-r2-backups"
+      pollInterval: 300
