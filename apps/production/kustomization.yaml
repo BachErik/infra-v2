@@ -5,14 +5,14 @@ resources:
   - ../base/nginx-download
   - ../base/gethomepage
   - ../base/homepage
-  #- ../base/diskube
+  - ../base/diskube
   - ../base/glance
-  #- ../base/haste-server
+  - ../base/haste-server
   - ../base/killedby
   - ../base/weave-gitops
   - ../base/kube-prometheus-stack
   #- ../base/erik-test
-  #- ../base/reposilite
+  - ../base/reposilite
   #- ../base/points
   - ../base/n8n
   - ../base/redirects
