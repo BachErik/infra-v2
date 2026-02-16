@@ -1,107 +1,94 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "timezone": "Europe/Berlin",
+
   "extends": [
-    "config:recommended",
-    ":dependencyDashboard",
-    ":semanticCommits"
+    "config:best-practices",
+    "default:pinDigestsDisabled"
   ],
-  "labels": [
-    "dependencies",
-    "renovate"
+
+  // Ensure no preset re-enables digest pinning
+  "ignorePresets": [
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests"
   ],
-  "assignees": [
-    "BachErik"
-  ],
-  "reviewers": [
-    "BachErik"
-  ],
-  "rebaseWhen": "conflicted",
-  "recreateWhen": "auto",
-  "prConcurrentLimit": 5,
-  "prHourlyLimit": 2,
-  "pinDigests": false,
+
+  "timezone": "Europe/Berlin",
+
+  // Normal updates: night + weekends (reduce noise)
   "schedule": [
-    "after 2am and before 5am"
+    "* 22-23,0-4 * * 1-5",
+    "* * * * 0,6"
   ],
-  "ignorePaths": [
-    "**/*.sops.*",
-    "**/.terraform/**",
-    "**/vendor/**"
-  ],
+
+  // Allow Renovate to update/rebase existing PRs outside the schedule,
+  // so PRs don't go stale.
+  "updateNotScheduled": true,
+
+  // Avoid "PR backlog because of hourly throttling"
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 5,
+  "branchConcurrentLimit": 10,
+
+  "dependencyDashboard": true,
+
+  // Less PR noise: don't split minor vs patch
+  "separateMinorPatch": false,
+
+  // If you're behind multiple majors, Renovate opens step-wise PRs
+  "separateMultipleMajor": true,
+
+  // Flux manager: default is very narrow, so widen it to your repo layout.
+  // Adjust folders as your repo grows.
   "flux": {
     "managerFilePatterns": [
-      "/(^|/)(clusters|apps|infrastructure)/.*\\.ya?ml$/"
+      "/(^|\\/)(clusters|infrastructure|apps|base|system)\\/.*\\.ya?ml$/"
     ]
   },
-  "kubernetes": {
-    "managerFilePatterns": [
-      "/(^|/)(clusters|apps|infrastructure)/.*\\.ya?ml$/"
-    ],
-    "ignorePaths": [
-      "**/clusters/**/flux-system/gotk-components.y*ml",
-      "**/clusters/**/flux-system/gotk-sync.y*ml"
-    ]
-  },
-  "helm-values": {
-    "managerFilePatterns": [
-      "/(^|/).*values\\.ya?ml$/"
-    ]
-  },
-  "customManagers": [
-    {
-      "customType": "regex",
-      "description": "Optional: bump K3s version strings if you store them in manifests (e.g. system-upgrade-controller Plans)",
-      "managerFilePatterns": [
-        "/(^|/)(clusters|apps|infrastructure)/.*\\.ya?ml$/"
-      ],
-      "matchStrings": [
-        "INSTALL_K3S_VERSION:\\s*\"?(?<currentValue>v\\d+\\.\\d+\\.\\d+\\+k3s\\d+)\"?",
-        "K3S_VERSION:\\s*\"?(?<currentValue>v\\d+\\.\\d+\\.\\d+\\+k3s\\d+)\"?",
-        "k3s_version:\\s*\"?(?<currentValue>v\\d+\\.\\d+\\.\\d+\\+k3s\\d+)\"?"
-      ],
-      "datasourceTemplate": "github-releases",
-      "packageNameTemplate": "k3s-io/k3s",
-      "depNameTemplate": "k3s"
-    }
+
+  "ignorePaths": [
+    "**/vendor/**",
+    "**/node_modules/**",
+    "**/.direnv/**"
   ],
+
   "packageRules": [
     {
-      "matchManagers": [
-        "flux"
-      ],
-      "groupName": "Flux system components"
+      "description": "Major updates require explicit approval",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true,
+      "addLabels": ["major"]
+    },
+
+    {
+      "description": "Delay brand-new releases a bit (Flux Helm + Docker only)",
+      "matchManagers": ["flux"],
+      "matchDatasources": ["helm", "docker"],
+      "minimumReleaseAge": "3 days"
+    },
+
+    {
+      "description": "Group non-major Flux Docker image updates",
+      "matchManagers": ["flux"],
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": "flux: docker (non-major)",
+      "groupSlug": "flux-docker-non-major"
     },
     {
-      "matchDatasources": [
-        "helm"
-      ],
-      "groupName": "Helm chart updates",
-      "separateMajorMinor": true
-    },
-    {
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchManagers": [
-        "kubernetes",
-        "helm-values"
-      ],
-      "groupName": "K8s container images",
-      "separateMajorMinor": true
-    },
-    {
-      "matchManagers": [
-        "github-actions"
-      ],
-      "groupName": "GitHub Actions",
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ],
-      "automerge": true
+      "description": "Group non-major Flux Helm chart updates",
+      "matchManagers": ["flux"],
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": "flux: helm (non-major)",
+      "groupSlug": "flux-helm-non-major"
     }
-  ]
+  ],
+
+  // GitHub Dependabot/Vulnerability Alerts integration:
+  // these PRs are created immediately and are not constrained like normal updates.
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "prCreation": "immediate",
+    "vulnerabilityFixStrategy": "lowest"
+  }
 }
