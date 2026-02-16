@@ -1,28 +1,28 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: ghcr
-    namespace: points
+  name: ghcr
+  namespace: points
 data:
-    .dockerconfigjson: ENC[AES256_GCM,data:oNqZ2Svy3xFCwtdpVSLDEE2k8xUGadxeA9ODDWnwk7uo2vEBn/d6Xl8ropq6sW3KNVSQKM4VHnnLuyieK54kgl/I6ulSi4Lnw5sZFcEfrv1xRCE1NoPGkiGPlMayHD/O6R68ECuogLfzrk4A/TxTNJQelrVKXItkwpXLXUB7Z5xz4bI8hE/vvA9TesQ=,iv:cymsH/flcM3cKskBwBrkutceErJQuYSso6U4PZTKxLA=,tag:g2pBMlizPoVlYc23ZaZVLg==,type:str]
+  .dockerconfigjson: ENC[AES256_GCM,data:oNqZ2Svy3xFCwtdpVSLDEE2k8xUGadxeA9ODDWnwk7uo2vEBn/d6Xl8ropq6sW3KNVSQKM4VHnnLuyieK54kgl/I6ulSi4Lnw5sZFcEfrv1xRCE1NoPGkiGPlMayHD/O6R68ECuogLfzrk4A/TxTNJQelrVKXItkwpXLXUB7Z5xz4bI8hE/vvA9TesQ=,iv:cymsH/flcM3cKskBwBrkutceErJQuYSso6U4PZTKxLA=,tag:g2pBMlizPoVlYc23ZaZVLg==,type:str]
 type: kubernetes.io/dockerconfigjson
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1fklxkacc5zep443xxjj8tm4t3zquzuahp2sen8v0f2j24ur83v3qazet3a
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwSW9jejRUVHRkOHBRaGQr
-            TThIcjFFN3lRUFlrUGhiWlY4cllBK2JIblZRCnhGdjVnMWhyOURodkwzUjM2dGph
-            R2U1NUYwWk1jYzBabkdaZkJVck1oYVUKLS0tIE1Mb0s4YlRJZEFmcVU4LzNHdlRH
-            NmxjZzAzbkVQYWwvcVlvWGYvbFdFb0UKG3UAl2Rs8POqLAWW/wRc546xMSweeH+V
-            GDpyNmPvsXcUjz5twyaydaWNu8fJUljNgEQlQjdFrcH6110VZtkzBg==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-07-12T18:40:54Z"
-    mac: ENC[AES256_GCM,data:HgGsu3sy4O3BrztcPjbCa6b76s3McJ6i+JLa/40uXoUKBV8DE71Uh/5fKw8furuWnhbtBaueSW9AKc1H05uMA/+A9puFfODHkqSOp4AvVAdL8DhbA05ai9LqDLlu1OfMNK//rSvlhQUB3ymsOXgDnb6rliroDQihJTXPVaKuMsg=,iv:JxBhHcH6hCPqd0e5Ul1leJOXjcLMBl24nwm70rNHhMI=,tag:3XoZp9AIAcRIomMYAiaOtQ==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.9.4
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1fklxkacc5zep443xxjj8tm4t3zquzuahp2sen8v0f2j24ur83v3qazet3a
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwSW9jejRUVHRkOHBRaGQr
+        TThIcjFFN3lRUFlrUGhiWlY4cllBK2JIblZRCnhGdjVnMWhyOURodkwzUjM2dGph
+        R2U1NUYwWk1jYzBabkdaZkJVck1oYVUKLS0tIE1Mb0s4YlRJZEFmcVU4LzNHdlRH
+        NmxjZzAzbkVQYWwvcVlvWGYvbFdFb0UKG3UAl2Rs8POqLAWW/wRc546xMSweeH+V
+        GDpyNmPvsXcUjz5twyaydaWNu8fJUljNgEQlQjdFrcH6110VZtkzBg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-07-12T18:40:54Z"
+  mac: ENC[AES256_GCM,data:HgGsu3sy4O3BrztcPjbCa6b76s3McJ6i+JLa/40uXoUKBV8DE71Uh/5fKw8furuWnhbtBaueSW9AKc1H05uMA/+A9puFfODHkqSOp4AvVAdL8DhbA05ai9LqDLlu1OfMNK//rSvlhQUB3ymsOXgDnb6rliroDQihJTXPVaKuMsg=,iv:JxBhHcH6hCPqd0e5Ul1leJOXjcLMBl24nwm70rNHhMI=,tag:3XoZp9AIAcRIomMYAiaOtQ==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.9.4

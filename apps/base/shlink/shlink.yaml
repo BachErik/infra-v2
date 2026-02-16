@@ -16,15 +16,15 @@ spec:
         app: shlink
     spec:
       containers:
-      - name: shlink
-        image: shlinkio/shlink:stable
-        ports:
-        - containerPort: 8080
-        envFrom:
-        - configMapRef:
-            name: shlink-config
-        - secretRef:
-            name: shlink-secret
+        - name: shlink
+          image: shlinkio/shlink:stable
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: shlink-config
+            - secretRef:
+                name: shlink-secret
 ---
 apiVersion: v1
 kind: Service

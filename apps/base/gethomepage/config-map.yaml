@@ -32,7 +32,7 @@ data:
   custom.js: |
     document.addEventListener('DOMContentLoaded', function() {
       console.log("Custom JS is loaded");
-    
+
       var bookmarks = document.querySelectorAll('li.bookmark[data-name="Mastodon"]');
       
       bookmarks.forEach(function(bookmark) {

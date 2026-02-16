@@ -8,17 +8,17 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - weblate.bacherik.de
-    secretName: weblate-tls
+    - hosts:
+        - weblate.bacherik.de
+      secretName: weblate-tls
   rules:
-  - host: "weblate.bacherik.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: weblate
-            port:
-              number: 80
+    - host: "weblate.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: weblate
+                port:
+                  number: 80

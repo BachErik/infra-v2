@@ -63,17 +63,17 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - bluesky.bachflow.app
-    secretName: bluesky-lyre-works-tls
+    - hosts:
+        - bluesky.bachflow.app
+      secretName: bluesky-lyre-works-tls
   rules:
-  - host: "bluesky.bachflow.app"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: redirect-bluesky-lyre
-            port:
-              number: 80
+    - host: "bluesky.bachflow.app"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: redirect-bluesky-lyre
+                port:
+                  number: 80

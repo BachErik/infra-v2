@@ -8,17 +8,17 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - short.bacherik.de
-    secretName: short-tls
+    - hosts:
+        - short.bacherik.de
+      secretName: short-tls
   rules:
-  - host: "short.bacherik.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: short
-            port:
-              number: 80
+    - host: "short.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: short
+                port:
+                  number: 80

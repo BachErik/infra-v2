@@ -8,17 +8,17 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - file.bacherik.de
-    secretName: nginx-tls
+    - hosts:
+        - file.bacherik.de
+      secretName: nginx-tls
   rules:
-  - host: "file.bacherik.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx
-            port:
-              number: 80
+    - host: "file.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80

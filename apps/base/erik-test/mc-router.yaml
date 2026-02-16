@@ -9,18 +9,18 @@ kind: ClusterRole
 metadata:
   name: services-watcher
 rules:
-- apiGroups: [""]
-  resources: ["services"]
-  verbs: ["watch","list"]
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: mc-router-services-watcher
 subjects:
-- kind: ServiceAccount
-  name: mc-router
-  namespace: eriktest
+  - kind: ServiceAccount
+    name: mc-router
+    namespace: eriktest
 roleRef:
   kind: ClusterRole
   name: services-watcher
@@ -34,14 +34,14 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - targetPort: web
-    name: web
-    port: 8080
-    nodePort: 30000
-  - targetPort: proxy
-    name: proxy
-    port: 25565
-    nodePort: 30001
+    - targetPort: web
+      name: web
+      port: 8080
+      nodePort: 30000
+    - targetPort: proxy
+      name: proxy
+      port: 25565
+      nodePort: 30001
   selector:
     run: mc-router
 ---
@@ -65,18 +65,18 @@ spec:
     spec:
       serviceAccountName: mc-router
       containers:
-      - image: bacherik/mc-router:test
-        name: mc-router
-        args: ["--api-binding", ":8080", "--in-kube-cluster"]
-        ports:
-        - name: proxy
-          containerPort: 25565
-        - name: web
-          containerPort: 8080
-        resources:
-          requests:
-            memory: 50Mi
-            cpu: "100m"
-          limits:
-            memory: 100Mi
-            cpu: "250m"
+        - image: bacherik/mc-router:test
+          name: mc-router
+          args: ["--api-binding", ":8080", "--in-kube-cluster"]
+          ports:
+            - name: proxy
+              containerPort: 25565
+            - name: web
+              containerPort: 8080
+          resources:
+            requests:
+              memory: 50Mi
+              cpu: "100m"
+            limits:
+              memory: 100Mi
+              cpu: "250m"

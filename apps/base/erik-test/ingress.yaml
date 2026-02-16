@@ -11,4 +11,3 @@ spec:
       services:
         - name: mc-router
           port: 25565
-   

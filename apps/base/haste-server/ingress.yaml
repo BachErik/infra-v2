@@ -9,17 +9,17 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - haste.bacherik.de
-    secretName: haste-server-tls
+    - hosts:
+        - haste.bacherik.de
+      secretName: haste-server-tls
   rules:
-  - host: "haste.bacherik.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: haste-server
-            port:
-              number: 80
+    - host: "haste.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: haste-server
+                port:
+                  number: 80

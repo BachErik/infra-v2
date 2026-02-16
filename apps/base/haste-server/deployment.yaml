@@ -16,23 +16,23 @@ spec:
         app: haste-server
     spec:
       containers:
-      - name: haste-server
-        image: bacherik/haste-server:latest
-        ports:
-        - containerPort: 7777
-        env:
-        - name: STORAGE_TYPE
-          value: redis
-        - name: STORAGE_HOST
-          value: haste-redis
-        - name: STORAGE_PORT
-          value: "6379"
-        - name: PORT
-          value: "7777"
-        volumeMounts:
-        - name: haste-data
-          mountPath: /data
+        - name: haste-server
+          image: bacherik/haste-server:latest
+          ports:
+            - containerPort: 7777
+          env:
+            - name: STORAGE_TYPE
+              value: redis
+            - name: STORAGE_HOST
+              value: haste-redis
+            - name: STORAGE_PORT
+              value: "6379"
+            - name: PORT
+              value: "7777"
+          volumeMounts:
+            - name: haste-data
+              mountPath: /data
       volumes:
-      - name: haste-data
-        persistentVolumeClaim:
-          claimName: haste-data-pvc
+        - name: haste-data
+          persistentVolumeClaim:
+            claimName: haste-data-pvc

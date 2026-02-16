@@ -27,10 +27,10 @@ spec:
     policy: sync
     interval: 5m
     domainFilters:
-    - lyre.works
-    - bacherik.de
-    - bachflow.app
-    - kunamel.app
+      - lyre.works
+      - bacherik.de
+      - bachflow.app
+      - kunamel.app
     provider:
       name: cloudflare
     env:

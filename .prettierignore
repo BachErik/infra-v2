@@ -1,0 +1,3 @@
+clusters/production/flux-system/gotk-components.yaml
+clusters/production/flux-system/gotk-sync.yaml
+renovate.json

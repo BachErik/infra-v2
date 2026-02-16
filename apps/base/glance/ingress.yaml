@@ -8,17 +8,17 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - dashboard.bacherik.de
-    secretName: dashboard-tls
+    - hosts:
+        - dashboard.bacherik.de
+      secretName: dashboard-tls
   rules:
-  - host: "dashboard.bacherik.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: glance
-            port:
-              number: 80
+    - host: "dashboard.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: glance
+                port:
+                  number: 80

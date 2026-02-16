@@ -26,5 +26,5 @@ spec:
               pathType: Prefix
       tls:
         - secretName: n8n-tls
-          hosts: 
+          hosts:
             - n8n.bacherik.de

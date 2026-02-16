@@ -49,11 +49,11 @@ spec:
       enabled: true
       maxReplicas: 10
       metrics:
-      - type: Resource
-        resource:
-          name: cpu
-          target:
-            type: Utilization
-            averageUtilization: 80
+        - type: Resource
+          resource:
+            name: cpu
+            target:
+              type: Utilization
+              averageUtilization: 80
     additionalArguments:
       - "--entryPoints.rtmp.address=:1935/tcp"

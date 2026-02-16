@@ -8,17 +8,17 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - chat.bacherik.de
-    secretName: open-webui-tls
+    - hosts:
+        - chat.bacherik.de
+      secretName: open-webui-tls
   rules:
-  - host: "chat.bacherik.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: open-webui
-            port:
-              number: 80
+    - host: "chat.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: open-webui
+                port:
+                  number: 80

@@ -14,17 +14,17 @@ spec:
         app: killedby
     spec:
       containers:
-      - name: killedby
-        image: bacherik/killedby:v1.2.2
-        env:
-        - name: GITHUB_USERNAME
-          value: "bacherik"
-        - name: GITHUB_REPOSITORY
-          value: "killedby.json"
-        - name: UPDATE_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: killedbytoken
-              key: update-token
-        ports:
-        - containerPort: 8080
+        - name: killedby
+          image: bacherik/killedby:v1.2.2
+          env:
+            - name: GITHUB_USERNAME
+              value: "bacherik"
+            - name: GITHUB_REPOSITORY
+              value: "killedby.json"
+            - name: UPDATE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: killedbytoken
+                  key: update-token
+          ports:
+            - containerPort: 8080

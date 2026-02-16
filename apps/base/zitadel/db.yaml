@@ -108,7 +108,6 @@ spec:
             - name: data
               mountPath: /var/lib/postgresql/data
 
-
       containers:
         - name: postgres
           image: postgres:18

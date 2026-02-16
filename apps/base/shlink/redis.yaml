@@ -24,17 +24,17 @@ spec:
         app: redis
     spec:
       containers:
-      - name: redis
-        image: redis:8-alpine
-        ports:
-        - containerPort: 6379
-        volumeMounts:
-        - mountPath: /data
-          name: redis-data
+        - name: redis
+          image: redis:8-alpine
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - mountPath: /data
+              name: redis-data
       volumes:
-      - name: redis-data
-        persistentVolumeClaim:
-          claimName: redis-pvc
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -45,5 +45,5 @@ spec:
   selector:
     app: redis
   ports:
-  - port: 6379
-    targetPort: 6379
+    - port: 6379
+      targetPort: 6379

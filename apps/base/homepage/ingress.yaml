@@ -8,18 +8,18 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - new.bacherik.de
-    secretName: bacherik-tls
+    - hosts:
+        - new.bacherik.de
+      secretName: bacherik-tls
 
   rules:
-  - host: "new.bacherik.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: bacherik-site
-            port:
-              number: 80
+    - host: "new.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bacherik-site
+                port:
+                  number: 80

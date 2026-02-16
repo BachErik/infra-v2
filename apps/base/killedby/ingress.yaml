@@ -8,17 +8,17 @@ metadata:
 spec:
   ingressClassName: traefik
   tls:
-  - hosts:
-    - killedby.bacherik.de
-    secretName: killedby-tls
+    - hosts:
+        - killedby.bacherik.de
+      secretName: killedby-tls
   rules:
-  - host: "killedby.bacherik.de"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: killedby
-            port:
-              number: 80
+    - host: "killedby.bacherik.de"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: killedby
+                port:
+                  number: 80

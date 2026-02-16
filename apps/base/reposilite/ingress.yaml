@@ -18,20 +18,20 @@ spec:
     - host: "reposilite.bacherik.de"
       http:
         paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: reposilite
-              port:
-                name: http
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: reposilite
+                port:
+                  name: http
     - host: "reposilite.nikoverflow.com"
       http:
         paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: reposilite
-              port:
-                name: http
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: reposilite
+                port:
+                  name: http
