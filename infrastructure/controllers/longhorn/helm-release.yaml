@@ -18,3 +18,8 @@ spec:
       backupTarget: "s3://k3s-longhorn@auto/longhorn/"
       backupTargetCredentialSecret: "longhorn-r2-backups"
       pollInterval: 300
+    persistence:
+      recurringJobSelector:
+        enable: true
+        jobList: >-
+          [{"name":"default","isGroup":true}]
