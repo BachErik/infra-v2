@@ -3,9 +3,7 @@ kind: Kustomization
 resources:
   - metrics-server.yaml
   #- local-storage.yaml
-  - longhorn/namespace.yaml
-  - longhorn/helm-repo.yaml
-  - longhorn/helm-release.yaml
+  - longhorn/
   - traefik.yaml
   - cf-secret.yaml
   - external-dns.yaml
