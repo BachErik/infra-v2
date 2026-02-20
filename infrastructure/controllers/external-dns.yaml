@@ -25,12 +25,13 @@ spec:
       interval: 12h
   values:
     policy: sync
-    interval: 5m
+    interval: 1h
     domainFilters:
       - lyre.works
       - bacherik.de
       - bachflow.app
       - kunamel.app
+    triggerLoopOnEvent: true
     provider:
       name: cloudflare
     env:
