@@ -18,6 +18,7 @@ resources:
   - ../base/redirects
   - ../base/rtmp
   - ../base/live-video
+  - ../base/keycloak
   #- ../base/zitadel
   #- ../base/stirlingpdf
   #- ../base/shlink
