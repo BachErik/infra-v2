@@ -5,10 +5,6 @@ namespace: databases
 resources:
   - secret-r2-creds.sops.yaml
   - secret-superuser.sops.yaml
-  - keycloak-db-creds.sops.yaml
   - cluster.yaml
   - scheduled-backup.yaml
-  - keycloak-database.yaml
-
-patchesStrategicMerge:
-  - patch-managed-roles.yaml
+  - provisioning/
