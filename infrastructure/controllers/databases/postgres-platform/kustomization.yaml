@@ -8,3 +8,6 @@ resources:
   - cluster.yaml
   - scheduled-backup.yaml
   - provisioning/
+
+patchesStrategicMerge:
+  - patch-managed-roles.yaml

@@ -5,6 +5,3 @@ namespace: databases
 resources:
   - keycloak-role-secret.sops.yaml
   - keycloak-database.yaml
-
-patchesStrategicMerge:
-  - keycloak-role-patch.yaml
