@@ -27,32 +27,3 @@ sops:
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.9.4
----
-# Patch/extend your existing Cluster (same namespace!) with managed.roles
-# (Show only the relevant part to add)
-apiVersion: postgresql.cnpg.io/v1
-kind: Cluster
-metadata:
-  name: platform-pg
-  namespace: databases
-spec:
-  managed:
-    roles:
-      - name: keycloak
-        ensure: present
-        login: true
-        superuser: false
-        passwordSecret:
-          name: keycloak-db-creds
-
----
-apiVersion: postgresql.cnpg.io/v1
-kind: Database
-metadata:
-  name: platform-pg-keycloak
-  namespace: databases
-spec:
-  name: keycloak
-  owner: keycloak
-  cluster:
-    name: platform-pg
