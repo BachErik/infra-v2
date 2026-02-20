@@ -7,7 +7,7 @@ resources:
   - secret-superuser.sops.yaml
   - cluster.yaml
   - scheduled-backup.yaml
-  - provisioning/
+  - provisioning
 
 patchesStrategicMerge:
   - patch-managed-roles.yaml

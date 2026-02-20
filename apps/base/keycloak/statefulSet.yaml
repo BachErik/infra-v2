@@ -57,7 +57,7 @@ spec:
             - name: 'KC_DB_URL_DATABASE'
               value: 'keycloak'
             - name: 'KC_DB_URL_HOST'
-              value: 'platform-pg-rw.databases.svc.cluster.local'
+              value: 'postgres-platform-rw.databases.svc.cluster.local'
             - name: 'KC_DB'
               value: 'postgres'
             - name: 'KC_DB_PASSWORD'

@@ -6,9 +6,11 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
+  ingressClassName: traefik
   tls:
     - hosts:
         - auth.bacherik.de
+      secretName: auth-tls
   rules:
     - host: auth.bacherik.de
       http:
