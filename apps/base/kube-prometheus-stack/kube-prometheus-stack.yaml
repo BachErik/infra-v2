@@ -32,6 +32,10 @@ spec:
     crds:
       enabled: true
     grafana:
+      grafana.ini:
+        server:
+          domain: grafana.bacherik.de
+          root_url: https://grafana.bacherik.de/
       ingress:
         enabled: true
         annotations:
