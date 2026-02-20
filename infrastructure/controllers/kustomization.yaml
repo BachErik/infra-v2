@@ -9,3 +9,5 @@ resources:
   - external-dns.yaml
   - cert-manager.yaml
   - system-upgrade-controller/
+  - cnpg-system/
+  - databases/
