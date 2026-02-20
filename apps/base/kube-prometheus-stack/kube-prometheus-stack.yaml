@@ -36,6 +36,25 @@ spec:
         server:
           domain: grafana.bacherik.de
           root_url: https://grafana.bacherik.de/
+        auth.generic_oauth:
+          enabled: true
+          name: BachErik-OAuth
+          allow_sign_up: true
+          client_id: grafana
+          scopes: "openid email profile offline_access roles"
+          email_attribute_path: email
+          login_attribute_path: username
+          name_attribute_path: full_name
+          auth_url: "https://auth.bacherik.de/realms/bacherik/protocol/openid-connect/auth"
+          token_url: "https://auth.bacherik.de/realms/bacherik/protocol/openid-connect/token"
+          api_url: "https://auth.bacherik.de/realms/bacherik/protocol/openid-connect/userinfo"
+          role_attribute_path: "contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'"
+
+      envValueFrom:
+        GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+          secretKeyRef:
+            name: grafana-oauth-client
+            key: client_secret
       ingress:
         enabled: true
         annotations:
