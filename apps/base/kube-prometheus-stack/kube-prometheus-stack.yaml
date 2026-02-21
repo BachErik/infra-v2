@@ -48,7 +48,7 @@ spec:
           auth_url: "https://auth.bacherik.de/realms/bacherik/protocol/openid-connect/auth"
           token_url: "https://auth.bacherik.de/realms/bacherik/protocol/openid-connect/token"
           api_url: "https://auth.bacherik.de/realms/bacherik/protocol/openid-connect/userinfo"
-          role_attribute_path: "contains(roles[*], 'admin') && 'GrafanaAdmin' || contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'"
+          role_attribute_path: "contains(resource_access.grafana.roles[*], 'grafanaadmin') && 'GrafanaAdmin' || contains(resource_access.grafana.roles[*], 'admin') && 'Admin' || contains(resource_access.grafana.roles[*], 'editor') && 'Editor' || 'Viewer'"
           allow_assign_grafana_admin: true
 
       envValueFrom:
