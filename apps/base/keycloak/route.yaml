@@ -22,4 +22,4 @@ spec:
         - name: keycloak
           port: 8080
   tls:
-    secretName: keycloak-tls
+    secretName: auth-keycloak-tls

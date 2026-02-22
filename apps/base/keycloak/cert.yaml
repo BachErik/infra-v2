@@ -1,13 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: keycloak-tls
+  name: auth-keycloak-tls
   namespace: keycloak
 spec:
-  secretName: keycloak-tls
+  secretName: auth-keycloak-tls
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
   dnsNames:
-    - keycloak.bacherik.de
     - auth.bacherik.de
