@@ -3,6 +3,8 @@ kind: IngressRoute
 metadata:
   name: keycloak-auth
   namespace: keycloak
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   entryPoints:
     - websecure
@@ -19,5 +21,3 @@ spec:
       services:
         - name: keycloak
           port: 8080
-  tls:
-    certResolver: letsencrypt
