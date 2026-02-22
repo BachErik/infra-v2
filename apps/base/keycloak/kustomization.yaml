@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: keycloak
 resources:
   - namespace.yaml
+  - middleware.yaml
+  - route.yaml
   - secret.yaml
   - service.yaml
   - statefulSet.yaml

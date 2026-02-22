@@ -1,0 +1,23 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: keycloak-auth
+  namespace: keycloak
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`auth.bacherik.de`) && Path(`/`)
+      kind: Rule
+      middlewares:
+        - name: redirect-to-bacherik-realm
+      services:
+        - name: keycloak
+          port: 80
+    - match: Host(`auth.bacherik.de`)
+      kind: Rule
+      services:
+        - name: keycloak
+          port: 80
+  tls:
+    certResolver: letsencrypt

@@ -11,19 +11,8 @@ spec:
     - secretName: keycloak-tls
       hosts:
         - keycloak.bacherik.de
-        - auth.bacherik.de
   rules:
     - host: keycloak.bacherik.de
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: keycloak
-                port:
-                  number: 8080
-    - host: auth.bacherik.de
       http:
         paths:
           - path: /

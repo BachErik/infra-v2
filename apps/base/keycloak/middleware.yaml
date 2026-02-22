@@ -1,0 +1,10 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-to-bacherik-realm
+  namespace: keycloak
+spec:
+  redirectRegex:
+    regex: "^https://auth\\.bacherik\\.de/?$"
+    replacement: "https://auth.bacherik.de/realms/bacherik/account"
+    permanent: false   # use false until you've verified it works, then flip to true
