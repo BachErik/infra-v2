@@ -12,7 +12,7 @@ resources:
   - ../base/weave-gitops
   - ../base/kube-prometheus-stack
   #- ../base/erik-test
-  - ../base/reposilite
+  #- ../base/reposilite
   #- ../base/points
   - ../base/n8n
   - ../base/redirects
